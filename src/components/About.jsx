@@ -2,7 +2,7 @@ import React from 'react';
 import { calculateAge } from '../utils/dateUtils';
 import { User, Code, Server, MapPin, Car } from 'lucide-react';
 import ParticleBackground from './ParticleBackground';
-import profileImg from '../assets/profile.jpg';
+import profileImg from '../assets/person_cutout.png';
 
 const About = () => {
     const age = calculateAge('1993-08-12');
@@ -23,30 +23,32 @@ const About = () => {
                         <div style={{
                             position: 'relative',
                             width: '100%',
-                            maxWidth: '350px',
-                            aspectRatio: '1/1',
-                            borderRadius: '20px',
+                            maxWidth: '360px',
+                            aspectRatio: '4/5',
+                            borderRadius: '24px',
                             overflow: 'hidden',
-                            boxShadow: '0 20px 50px rgba(0,0,0,0.5)',
-                            border: '2px solid var(--color-primary)'
+                            boxShadow: '0 25px 60px rgba(0, 0, 0, 0.6), 0 0 30px rgba(59, 130, 246, 0.25)',
+                            border: '2px solid rgba(59, 130, 246, 0.4)',
+                            background: 'radial-gradient(circle at 50% 35%, #1e293b 0%, #0f172a 60%, #050811 100%)'
                         }}>
                             <img
                                 src={profileImg}
-                                alt="Profile"
+                                alt="Martin Delory"
                                 style={{
                                     width: '100%',
                                     height: '100%',
                                     objectFit: 'cover',
-                                    objectPosition: 'top center',
+                                    objectPosition: 'bottom center',
                                     transition: 'transform 0.5s ease'
                                 }}
-                                onMouseEnter={(e) => e.target.style.transform = 'scale(1.1)'}
+                                onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
                                 onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
                             />
                             <div style={{
                                 position: 'absolute',
                                 inset: 0,
-                                background: 'linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%)'
+                                background: 'linear-gradient(to top, rgba(10, 10, 10, 0.5) 0%, transparent 40%)',
+                                pointerEvents: 'none'
                             }} />
                         </div>
                     </div>
