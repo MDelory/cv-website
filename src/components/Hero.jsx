@@ -5,7 +5,7 @@ import ParticleBackground from './ParticleBackground';
 const Hero = () => {
     return (
         <section id="home" className="hero-section" style={{
-            height: '100vh',
+            minHeight: '100dvh',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
@@ -13,27 +13,67 @@ const Hero = () => {
             textAlign: 'center',
             position: 'relative',
             background: 'radial-gradient(circle at center, var(--color-bg-secondary) 0%, var(--color-bg) 100%)',
-            overflow: 'hidden'
+            overflow: 'hidden',
+            padding: '7rem 1rem 5rem'
         }}>
             <ParticleBackground />
-            <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-                <h4 style={{ color: 'var(--color-primary)', textTransform: 'uppercase', letterSpacing: '3px', marginBottom: '1rem' }}>
+            <div className="container" style={{
+                position: 'relative',
+                zIndex: 1,
+                width: '100%',
+                maxWidth: '900px',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center'
+            }}>
+                <h4 style={{
+                    color: 'var(--color-primary)',
+                    textTransform: 'uppercase',
+                    letterSpacing: '3px',
+                    marginBottom: '0.75rem',
+                    fontSize: 'clamp(0.85rem, 2vw, 1.1rem)',
+                    fontWeight: '600'
+                }}>
                     Développeur Back-End
                 </h4>
-                <h1 style={{ fontSize: 'clamp(3rem, 8vw, 6rem)', marginBottom: '1rem' }}>
+                <h1 style={{
+                    fontSize: 'clamp(2.4rem, 7vw, 5.5rem)',
+                    marginBottom: '1rem',
+                    lineHeight: '1.1',
+                    wordBreak: 'break-word'
+                }}>
                     Martin <span style={{ color: 'var(--color-primary)' }}>Delory</span>
                 </h1>
                 <p style={{
-                    fontSize: '1.2rem',
+                    fontSize: 'clamp(1rem, 2.5vw, 1.25rem)',
                     color: 'var(--color-text-muted)',
-                    maxWidth: '600px',
-                    margin: '0 auto 2rem'
+                    maxWidth: '650px',
+                    margin: '0 auto 1.5rem',
+                    lineHeight: '1.6',
+                    padding: '0 0.5rem'
                 }}>
                     Conception de systèmes back-end robustes, évolutifs et sécurisés.
                     Transformer une logique complexe en code élégant.
                 </p>
-                <div style={{ display: 'flex', justifyContent: 'center', marginTop: '2rem' }}>
-                    <svg width="800" height="180" viewBox="0 0 800 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <div style={{
+                    width: '100%',
+                    maxWidth: '800px',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    marginTop: '1rem',
+                    padding: '0 0.5rem'
+                }}>
+                    <svg
+                        viewBox="0 0 800 180"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        style={{
+                            width: '100%',
+                            maxHeight: '180px',
+                            height: 'auto',
+                            display: 'block'
+                        }}
+                    >
                         <defs>
                             <filter id="neon-glow" x="-50%" y="-50%" width="200%" height="200%">
                                 <feGaussianBlur stdDeviation="2" result="coloredBlur" />
@@ -115,21 +155,29 @@ const Hero = () => {
                 </div>
             </div>
 
-            <div style={{
-                position: 'absolute',
-                bottom: '2rem',
-                left: '50%',
-                transform: 'translateX(-50%)',
-                animation: 'bounce 2s infinite'
-            }}>
-                <ArrowDown size={32} color="var(--color-primary)" />
-            </div>
+            <a
+                href="#about"
+                aria-label="Faire défiler vers le bas"
+                style={{
+                    position: 'absolute',
+                    bottom: '1.5rem',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    animation: 'bounce 2s infinite',
+                    color: 'var(--color-primary)',
+                    zIndex: 2,
+                    cursor: 'pointer',
+                    padding: '0.5rem'
+                }}
+            >
+                <ArrowDown size={28} color="var(--color-primary)" />
+            </a>
 
             <style>{`
         @keyframes bounce {
           0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
-          40% { transform: translateY(-10px) translateX(-50%); }
-          60% { transform: translateY(-5px) translateX(-50%); }
+          40% { transform: translateY(-8px) translateX(-50%); }
+          60% { transform: translateY(-4px) translateX(-50%); }
         }
       `}</style>
         </section>

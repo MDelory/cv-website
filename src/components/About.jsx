@@ -2,7 +2,7 @@ import React from 'react';
 import { calculateAge } from '../utils/dateUtils';
 import { User, Code, Server, MapPin, Car } from 'lucide-react';
 import ParticleBackground from './ParticleBackground';
-import profileImg from '../assets/profile.png';
+import profileImg from '../assets/profile.jpg';
 
 const About = () => {
     const age = calculateAge('1993-08-12');
