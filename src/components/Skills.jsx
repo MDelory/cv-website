@@ -1,6 +1,13 @@
 import React from 'react';
-import { Database, Server, Globe, Shield, Cpu, Terminal } from 'lucide-react';
+import { Database, Server, Shield } from 'lucide-react';
 import ParticleBackground from './ParticleBackground';
+import { skillCategories } from '../data/cvData';
+
+const iconMap = {
+    backend: Server,
+    database: Database,
+    devops: Shield,
+};
 
 const SkillCard = ({ icon: Icon, title, skills }) => (
     <div style={{
@@ -52,27 +59,17 @@ const Skills = () => {
                     gap: '2rem',
                     marginTop: '3rem'
                 }}>
-                    <SkillCard
-                        icon={Server}
-                        title="Développement Back-end"
-                        skills={[
-                            'Java (versions 8, 11, 17, 21, 25)',
-                            'Spring Boot 3 / Framework Spring',
-                            'Écosystème Microservices & REST APIs',
-                            'Clean Code, DDD & TDD',
-                            'PHP / Symfony & Node.js'
-                        ]}
-                    />
-                    <SkillCard
-                        icon={Database}
-                        title="Base de données"
-                        skills={['PostgreSQL', 'Oracle', 'Redis', 'Modélisation BDD', 'MySQL / Maria DB']}
-                    />
-                    <SkillCard
-                        icon={Shield}
-                        title="DevOps & Sécurité"
-                        skills={['Google Cloud Platform', 'Docker / Kubernetes', 'Pipelines CI/CD', 'OAuth / JWT', 'Git']}
-                    />
+                    {skillCategories.map((cat) => {
+                        const Icon = iconMap[cat.id] || Server;
+                        return (
+                            <SkillCard
+                                key={cat.id}
+                                icon={Icon}
+                                title={cat.title}
+                                skills={cat.skills}
+                            />
+                        );
+                    })}
                 </div>
             </div>
         </section>

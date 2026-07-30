@@ -1,11 +1,11 @@
 import React from 'react';
-import { calculateAge } from '../utils/dateUtils';
+import { getAge, profileSummary } from '../data/cvData';
 import { User, Code, Server, MapPin, Car } from 'lucide-react';
 import ParticleBackground from './ParticleBackground';
 import profileImg from '../assets/person_cutout.png';
 
 const About = () => {
-    const age = calculateAge('1993-08-12');
+    const age = getAge();
 
     return (
         <section id="about" style={{ position: 'relative', backgroundColor: 'var(--color-bg-secondary)', overflow: 'hidden' }}>
@@ -56,12 +56,11 @@ const About = () => {
                     </div>
 
                     <div>
-                        <p style={{ fontSize: '1.1rem', marginBottom: '1.5rem', color: 'var(--color-text-muted)' }}>
-                            Je suis un Développeur Back-end Senior de {age} ans spécialisé dans l'écosystème **Java (versions 8, 11, 17, 21, 25)** et les architectures en **microservices**.
-                            Intéressé par les nouvelles technologies et méthodes agiles, j'aime concevoir des architectures distribuées hautement disponibles et proposer des solutions innovantes à forte valeur ajoutée métier.
+                        <p style={{ fontSize: '1.1rem', marginBottom: '1.5rem', color: 'var(--color-text-muted)', lineHeight: '1.7' }}>
+                            Développeur Back-end Senior de {age} ans fort d'une solide expertise en développement back-end et architectures distribuées. Principalement axé sur l'écosystème <strong style={{ color: 'var(--color-accent)' }}>Java (versions 8, 11, 17, 21, 25)</strong> et Spring Boot 3, je maîtrise également d'autres langages back-end tels que <strong style={{ color: 'var(--color-primary)' }}>PHP (Symfony), Node.js et Python</strong>.
                         </p>
-                        <p style={{ fontSize: '1.1rem', marginBottom: '1.5rem', color: 'var(--color-text-muted)' }}>
-                            Je propose mon expertise technique aux entreprises pour les accompagner de la phase d'audit et de conception jusqu'à la livraison et l'optimisation en production de leurs microservices et systèmes complexes.
+                        <p style={{ fontSize: '1.1rem', marginBottom: '1.5rem', color: 'var(--color-text-muted)', lineHeight: '1.7' }}>
+                            Spécialisé dans la conception d'APIs RESTful résilientes à fort volume, l'écosystème <strong style={{ color: 'var(--color-accent)' }}>Microservices</strong>, l'optimisation des bases de données (Oracle, PostgreSQL, Redis) et le déploiement continu sur GCP et Docker. J'interviens de la phase d'audit et de conception jusqu'à la mise en production.
                         </p>
 
                         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginTop: '2rem' }}>
@@ -75,7 +74,7 @@ const About = () => {
                             }}>
                                 <Server size={32} color="var(--color-primary)" style={{ marginBottom: '0.5rem' }} />
                                 <h3 style={{ fontSize: '1.1rem', marginBottom: '0.2rem' }}>Backend</h3>
-                                <p style={{ color: 'var(--color-text-muted)', fontSize: '0.8rem' }}>Java/SpringBoot, PHP, Node.js</p>
+                                <p style={{ color: 'var(--color-text-muted)', fontSize: '0.8rem' }}>Java, PHP, Node.js, Python</p>
                             </div>
                             <div style={{
                                 padding: '1.5rem',
@@ -87,7 +86,7 @@ const About = () => {
                             }}>
                                 <Code size={32} color="var(--color-primary)" style={{ marginBottom: '0.5rem' }} />
                                 <h3 style={{ fontSize: '1.1rem', marginBottom: '0.2rem' }}>Code Propre</h3>
-                                <p style={{ color: 'var(--color-text-muted)', fontSize: '0.8rem' }}>Maintenable</p>
+                                <p style={{ color: 'var(--color-text-muted)', fontSize: '0.8rem' }}>Maintenable & Résilient</p>
                             </div>
                             <div style={{
                                 padding: '1.5rem',

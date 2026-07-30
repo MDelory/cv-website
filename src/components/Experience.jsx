@@ -2,8 +2,9 @@ import React from 'react';
 import { calculateDuration } from '../utils/dateUtils';
 import { Briefcase, GraduationCap } from 'lucide-react';
 import ParticleBackground from './ParticleBackground';
+import { experiences, education } from '../data/cvData';
 
-const ExperienceItem = ({ title, company, client, startDate, endDate, description, isLast }) => {
+const ExperienceItem = ({ title, company, client, startDate, endDate, description, envTechnique, isLast }) => {
     const duration = calculateDuration(startDate, endDate || new Date());
     const endDisplay = endDate ? new Date(endDate).toLocaleDateString('fr-FR', { month: 'short', year: 'numeric' }) : "Aujourd'hui";
     const startDisplay = new Date(startDate).toLocaleDateString('fr-FR', { month: 'short', year: 'numeric' });
@@ -45,7 +46,12 @@ const ExperienceItem = ({ title, company, client, startDate, endDate, descriptio
             }}>
                 {startDisplay} - {endDisplay} • {duration}
             </div>
-            <p style={{ color: 'var(--color-text-muted)' }}>{description}</p>
+            <p style={{ color: 'var(--color-text-muted)', marginBottom: envTechnique ? '0.5rem' : '0' }}>{description}</p>
+            {envTechnique && (
+                <p style={{ fontSize: '0.88rem', color: 'var(--color-primary)', fontWeight: '500' }}>
+                    <span style={{ color: 'var(--color-text-muted)', fontWeight: '600' }}>Env. Technique : </span>{envTechnique}
+                </p>
+            )}
         </div>
     );
 };
@@ -84,6 +90,11 @@ const EducationItem = ({ title, establishment, year, description }) => (
 );
 
 const Experience = () => {
+    // Grouper par entreprise si désiré, ou afficher la liste ordonnée
+    const nticoExps = experiences.filter(e => e.company === 'NTICO');
+    const quadraExps = experiences.filter(e => e.company === 'Quadra-Informatique');
+    const stageExps = experiences.filter(e => !['NTICO', 'Quadra-Informatique'].includes(e.company));
+
     return (
         <section id="experience" style={{ position: 'relative', overflow: 'hidden' }}>
             <ParticleBackground />
@@ -96,104 +107,79 @@ const Experience = () => {
                     flexWrap: 'wrap',
                     alignItems: 'flex-start'
                 }}>
-                    {/* Experience Section (Dominant) */}
+                    {/* Section Expérience */}
                     <div style={{ flex: '2', minWidth: '300px' }}>
                         <h3 style={{ fontSize: '1.8rem', marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
                             <Briefcase size={32} color="var(--color-primary)" />
                             Expérience
                         </h3>
 
-                        {/* Group 1: NTICO */}
+                        {/* Groupe NTICO */}
                         <ExperienceGroup>
-                            <ExperienceItem
-                                title="Développeur Backend Java & Microservices"
-                                company="NTICO"
-                                client="KIABI"
-                                startDate="2024-02-11"
-                                description="Mission Client - Conception et développement d'une architecture globale en Écosystème Microservices à forte charge. Conception d'APIs RESTful résilientes, déploiement sur Google Cloud Platform (GCP), optimisation des requêtes et pipelines CI/CD. - Env. Technique: Java 17, Java 21 / Spring Boot 3 / Écosystème Microservices / GCP / Docker / Oracle / Postgres / Kafka"
-                            />
-                            <ExperienceItem
-                                title="Développeur Backend Java"
-                                company="NTICO"
-                                client="Yzee Service"
-                                startDate="2022-02-01"
-                                endDate="2024-02-10"
-                                description="Mission Client - Développements Back-end et intégration d'APIs au sein d'un Écosystème Microservices. Optimisation des performances avec mise en place de cache Redis, automatisation des builds et suivi de production. - Env. Technique: Java 11, Java 17 / Spring Boot / Écosystème Microservices / REDIS / Python / Postgres / Docker"
-                                isLast={true}
-                            />
+                            {nticoExps.map((exp, i) => (
+                                <ExperienceItem
+                                    key={exp.id}
+                                    title={exp.title}
+                                    company={exp.company}
+                                    client={exp.client}
+                                    startDate={exp.startDate}
+                                    endDate={exp.endDate}
+                                    description={exp.description}
+                                    envTechnique={exp.envTechnique}
+                                    isLast={i === nticoExps.length - 1}
+                                />
+                            ))}
                         </ExperienceGroup>
 
-                        {/* Group 2: Quadra-Informatique */}
+                        {/* Groupe Quadra */}
                         <ExperienceGroup>
-                            <ExperienceItem
-                                title="Développeur Full Stack & Référent Technique"
-                                company="Quadra-Informatique"
-                                client="Centre de service Secteur Public (CAPDEMAT)"
-                                startDate="2018-01-01"
-                                endDate="2022-02-21"
-                                description="Centre de service Secteur Public - Audit d'applications, développements, architecture Web Services et gestion de projet. Migration et maintenance d'applications métier. - Env. Technique: Java 8, Java 11 / PHP / Symfony / HTML/CSS / Javascript / SQL / Web Services REST & SOAP"
-                            />
-                            <ExperienceItem
-                                title="Développeur Full Stack"
-                                company="Quadra-Informatique"
-                                client="Weldom (Clermont de l'Oise)"
-                                startDate="2017-02-01"
-                                endDate="2017-12-31"
-                                description="Mission Client - Reporting opérationnel DashBoard / JasperReport, ZPL - Env. Technique: WMOS, HTML/CSS, Javascript/JQuery, SQL, JasperReport, ZPL"
-                                isLast={true}
-                            />
+                            {quadraExps.map((exp, i) => (
+                                <ExperienceItem
+                                    key={exp.id}
+                                    title={exp.title}
+                                    company={exp.company}
+                                    client={exp.client}
+                                    startDate={exp.startDate}
+                                    endDate={exp.endDate}
+                                    description={exp.description}
+                                    envTechnique={exp.envTechnique}
+                                    isLast={i === quadraExps.length - 1}
+                                />
+                            ))}
                         </ExperienceGroup>
 
-                        {/* Group 3: Stages (Individual but grouped for consistency if needed, or separate. Let's group by company if same, else separate. Here company differs: Norauto, Bailly) */}
-                        <ExperienceGroup>
-                            <ExperienceItem
-                                title="Développeur Stagiaire"
-                                company="Norauto Internationnal"
-                                client
-                                startDate="2016-04-01"
-                                endDate="2016-06-06"
-                                description="Développement Interne - Magic Wheel. Methodologie hybrid / agile - Env. Technique: PHP, HTML/CSS, Javascript/JQuery, SQL"
-                                isLast={true}
-                            />
-                        </ExperienceGroup>
-
-                        <ExperienceGroup>
-                            <ExperienceItem
-                                title="Développeur Stagiaire"
-                                company="Bailly Courouble (Logistique)"
-                                client
-                                startDate="2015-04-01"
-                                endDate="2015-06-06"
-                                description="Module de Gestion des Utilisateurs, Modèle MVC - Env. Technique: PHP, HTML/CSS, Javascript/JQuery, SQL"
-                                isLast={true}
-                            />
-                        </ExperienceGroup>
+                        {/* Stages */}
+                        {stageExps.map((exp) => (
+                            <ExperienceGroup key={exp.id}>
+                                <ExperienceItem
+                                    title={exp.title}
+                                    company={exp.company}
+                                    client={exp.client}
+                                    startDate={exp.startDate}
+                                    endDate={exp.endDate}
+                                    description={exp.description}
+                                    envTechnique={exp.envTechnique}
+                                    isLast={true}
+                                />
+                            </ExperienceGroup>
+                        ))}
                     </div>
 
-                    {/* Education Section (Discrete) */}
+                    {/* Section Formation */}
                     <div style={{ flex: '1', minWidth: '250px' }}>
                         <h3 style={{ fontSize: '1.5rem', marginBottom: '2rem', color: 'var(--color-text)', display: 'flex', alignItems: 'center', gap: '1rem' }}>
                             <GraduationCap size={28} color="var(--color-primary)" />
                             Formation
                         </h3>
-                        <EducationItem
-                            title="BTS SIO (Services Informatiques aux Organisations)"
-                            establishment="Lycée Gaston Berger - Lille"
-                            year="2014 - 2016"
-                            description="Option Solutions Logicielles et Applications Métiers (SLAM)."
-                        />
-                        <EducationItem
-                            title="BTS MUC (Management des Unités Commerciales"
-                            establishment="CEPRECO - Roubaix"
-                            year="2012-2014"
-                            description="Alternance dans la grande distribution hard-discount"
-                        />
-                        <EducationItem
-                            title="Baccalauréat ES (Economique & Sociale)"
-                            establishment="L.I.C.P - Tourcoing"
-                            year="2011"
-                            description="Specialité Mathématiques"
-                        />
+                        {education.map((edu) => (
+                            <EducationItem
+                                key={edu.id}
+                                title={edu.title}
+                                establishment={edu.establishment}
+                                year={edu.year}
+                                description={edu.description}
+                            />
+                        ))}
                     </div>
                 </div>
             </div>
