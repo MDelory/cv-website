@@ -1,40 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { calculateAge, calculateDuration } from '../utils/dateUtils';
 import profileImg from '../assets/person_cutout.png';
 
 /**
- * PDFTemplate - composant CV au format A4 (fond blanc, styles CSS concrets).
- * Il s'écoute sur un événement global pour passer en mode "capture" :
- *   → mode normal  : masqué hors écran (left: -9999px)
- *   → mode capture : rendu visible en position fixed top:0 left:0 z-index:99999
- *
- * html2canvas cible uniquement ce composant – l'overlay de PDFDownloadButton
- * (z-index:100000) cache la page à l'utilisateur MAIS n'est pas inclus
- * dans la capture de ce nœud.
+ * PDFTemplate - Modèle de CV format A4.
+ * Toujours rendu dans le DOM en position masquée (position: absolute; left: -9999px).
+ * Lors du clic sur le bouton de téléchargement, PDFDownloadButton clone cet élément
+ * dans un conteneur temporaire hors écran pour générer un PDF propre sans clignotement.
  */
 const PDFTemplate = () => {
-    const [capturing, setCapturing] = useState(false);
-
-    useEffect(() => {
-        const start = () => setCapturing(true);
-        const done  = () => setCapturing(false);
-        window.addEventListener('pdf:capture:start', start);
-        window.addEventListener('pdf:capture:done',  done);
-        return () => {
-            window.removeEventListener('pdf:capture:start', start);
-            window.removeEventListener('pdf:capture:done',  done);
-        };
-    }, []);
-
     const age = calculateAge('1993-08-12');
-    const expKiabi  = calculateDuration('2024-02-11', new Date());
-    const expYzee   = calculateDuration('2022-02-01', '2024-02-10');
-    const expQuadra = calculateDuration('2018-01-01', '2022-02-21');
-    const expWeldom = calculateDuration('2017-02-01', '2017-12-31');
-    const expNorauto = calculateDuration('2016-04-01', '2016-06-06');
-    const expBailly  = calculateDuration('2015-04-01', '2015-06-06');
 
-    // Couleurs concrètes (pas de var(--...)) pour html2canvas
+    const expKiabi    = calculateDuration('2024-02-11', new Date());
+    const expYzee     = calculateDuration('2022-02-01', '2024-02-10');
+    const expQuadra   = calculateDuration('2018-01-01', '2022-02-21');
+    const expWeldom   = calculateDuration('2017-02-01', '2017-12-31');
+    const expNorauto  = calculateDuration('2016-04-01', '2016-06-06');
+    const expBailly   = calculateDuration('2015-04-01', '2015-06-06');
+
+    // Couleurs concrètes pour un rendu fiable dans html2canvas
     const C = {
         primary: '#2563eb',
         dark:    '#0f172a',
@@ -43,40 +27,9 @@ const PDFTemplate = () => {
         body:    '#334155',
         bg:      '#f1f5f9',
         bgSoft:  '#f8fafc',
-        border:  '#e2e8f0',
+        border:  '#cbd5e1',
         white:   '#ffffff',
     };
-
-    const outerStyle = capturing
-        ? {
-            position: 'fixed',
-            top: '0px',
-            left: '0px',
-            zIndex: 99999,
-            width: '794px',
-            minHeight: '1123px',
-            backgroundColor: C.white,
-            color: C.text,
-            fontFamily: "Arial, Helvetica, sans-serif",
-            fontSize: '9.5pt',
-            lineHeight: '1.45',
-            padding: '32px',
-            boxSizing: 'border-box',
-            overflow: 'visible',
-        }
-        : {
-            position: 'absolute',
-            left: '-9999px',
-            top: '0px',
-            width: '794px',
-            backgroundColor: C.white,
-            color: C.text,
-            fontFamily: "Arial, Helvetica, sans-serif",
-            fontSize: '9.5pt',
-            lineHeight: '1.45',
-            padding: '32px',
-            boxSizing: 'border-box',
-        };
 
     const H = {
         section: {
@@ -92,19 +45,34 @@ const PDFTemplate = () => {
     };
 
     return (
-        <div id="cv-pdf-template" aria-hidden="true" style={outerStyle}>
-
+        <div
+            id="cv-pdf-template"
+            aria-hidden="true"
+            style={{
+                position: 'absolute',
+                left: '-9999px',
+                top: '0px',
+                width: '794px',
+                backgroundColor: C.white,
+                color: C.text,
+                fontFamily: "Arial, Helvetica, sans-serif",
+                fontSize: '9.5pt',
+                lineHeight: '1.45',
+                padding: '32px',
+                boxSizing: 'border-box',
+            }}
+        >
             {/* ─── HEADER ─── */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '16px', borderBottom: `2px solid ${C.primary}`, paddingBottom: '14px', marginBottom: '14px' }}>
-                {/* Photo */}
-                <div style={{ width: '80px', height: '80px', borderRadius: '50%', overflow: 'hidden', border: `2.5px solid ${C.primary}`, flexShrink: 0, backgroundColor: '#0f172a' }}>
+                {/* Photo de profil */}
+                <div style={{ width: '82px', height: '82px', borderRadius: '50%', overflow: 'hidden', border: `2.5px solid ${C.primary}`, flexShrink: 0, backgroundColor: '#0f172a' }}>
                     <img
                         src={profileImg}
                         alt="Martin Delory"
-                        style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 18%', transform: 'scale(1.35)', transformOrigin: 'center 20%' }}
+                        style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%', transform: 'scale(1.15)', transformOrigin: 'center 20%' }}
                     />
                 </div>
-                {/* Identité */}
+                {/* Informations de contact & Titre */}
                 <div style={{ flex: 1 }}>
                     <div style={{ fontSize: '22pt', fontWeight: '800', color: C.dark, lineHeight: 1.1 }}>
                         Martin <span style={{ color: C.primary }}>DELORY</span>
@@ -113,27 +81,27 @@ const PDFTemplate = () => {
                         Développeur Backend Java &amp; Architectures Microservices
                     </div>
                     <div style={{ fontSize: '8.5pt', color: C.muted, marginTop: '5px', display: 'flex', flexWrap: 'wrap', gap: '14px' }}>
-                        <span>delorymartin@gmail.com</span>
-                        <span>Métropole Lilloise</span>
-                        <span>Permis B — Véhiculé</span>
-                        <span>linkedin.com/in/martin-delory</span>
-                        <span>github.com/MDelory</span>
+                        <span>✉ delorymartin@gmail.com</span>
+                        <span>📍 Métropole Lilloise</span>
+                        <span>🚗 Permis B — Véhiculé</span>
+                        <span>🔗 linkedin.com/in/martin-delory</span>
+                        <span>💻 github.com/MDelory</span>
                     </div>
                 </div>
             </div>
 
-            {/* ─── PROFIL ─── */}
+            {/* ─── PROFIL PROFESSIONNEL ─── */}
             <div style={{ backgroundColor: C.bgSoft, borderLeft: `4px solid ${C.primary}`, padding: '8px 12px', marginBottom: '14px', borderRadius: '0 4px 4px 0' }}>
                 <div style={{ fontWeight: '700', color: C.dark, marginBottom: '3px', fontSize: '10pt' }}>PROFIL PROFESSIONNEL</div>
                 <div style={{ color: C.body, fontSize: '9pt', lineHeight: '1.4' }}>
-                    Développeur Back-end Senior ({age} ans) expert en <strong>Java (8 · 11 · 17 · 21 · 25)</strong>, <strong>Spring Boot 3</strong>
-                    {' '}et architectures <strong>Microservices distribuées</strong>. Spécialisé dans la conception d'APIs RESTful résilientes
+                    Développeur Back-end Senior ({age} ans) expert de l'écosystème <strong>Java (8 · 11 · 17 · 21 · 25)</strong>, <strong>Spring Boot 3</strong>
+                    {' '}et des architectures <strong>Microservices distribuées</strong>. Spécialisé dans la conception d'APIs RESTful résilientes
                     à fort volume, l'optimisation des bases de données (Oracle, PostgreSQL, Redis) et le déploiement continu sur GCP / Docker.
-                    Fort d'une expérience d'audit, de gestion de projet technique et de Clean Code sur des environnements critiques.
+                    Expertise reconnue en audit technique, gestion de projet et Clean Code sur des environnements critiques.
                 </div>
             </div>
 
-            {/* ─── COMPÉTENCES ─── */}
+            {/* ─── COMPÉTENCES CLEFS ─── */}
             <div style={{ marginBottom: '14px' }}>
                 <div style={H.section}>Compétences Techniques</div>
                 <div style={{ display: 'flex', gap: '10px' }}>
@@ -152,7 +120,7 @@ const PDFTemplate = () => {
                 </div>
             </div>
 
-            {/* ─── EXPÉRIENCES ─── */}
+            {/* ─── EXPÉRIENCES PROFESSIONNELLES ─── */}
             <div style={{ marginBottom: '14px' }}>
                 <div style={H.section}>Expériences Professionnelles</div>
 

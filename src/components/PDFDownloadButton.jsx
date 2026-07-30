@@ -1,74 +1,116 @@
 import React, { useState } from 'react';
 import { Download, Loader2 } from 'lucide-react';
+import html2canvas from 'html2canvas';
+import { jsPDF } from 'jspdf';
 
 const PDFDownloadButton = ({ className = '', style = {}, variant = 'primary' }) => {
     const [loading, setLoading] = useState(false);
 
     const handleDownload = async () => {
+        if (loading) return;
         setLoading(true);
 
-        // 1. Overlay opaque qui cache la page à l'utilisateur (z-index 100000)
-        //    html2canvas ne capture PAS cet élément : il cible uniquement #cv-pdf-template
-        const overlay = document.createElement('div');
-        overlay.style.cssText = [
-            'position:fixed', 'inset:0',
-            'z-index:100000',
-            'background:rgba(10,10,10,0.96)',
-            'display:flex', 'flex-direction:column',
-            'align-items:center', 'justify-content:center',
-            'gap:16px', 'color:#ffffff',
-            'font-family:Arial,sans-serif',
-            'font-size:1rem', 'font-weight:600',
-            'pointer-events:none',
-        ].join(';');
-        overlay.innerHTML = '<div style="font-size:2.5rem">⏳</div><div>Génération du CV en PDF…</div><div style="font-size:0.8rem;opacity:0.6">Veuillez patienter quelques secondes</div>';
-        document.body.appendChild(overlay);
-
+        let container = null;
         try {
-            // 2. Passer le template en mode "capture" (position fixed z-index:99999)
-            //    via l'event React
-            window.dispatchEvent(new Event('pdf:capture:start'));
-
-            // 3. Attendre que React re-rende le template en position visible
-            await new Promise(r => setTimeout(r, 600));
-
-            const element = document.getElementById('cv-pdf-template');
-            if (!element) throw new Error('Element #cv-pdf-template introuvable.');
-
-            // Vérifier que l'élément a bien des dimensions
-            const rect = element.getBoundingClientRect();
-            console.log('[PDF] Element rect :', rect);
-            if (rect.width === 0 || rect.height === 0) {
-                throw new Error(`Element a des dimensions nulles : ${JSON.stringify(rect)}`);
+            const source = document.getElementById('cv-pdf-template');
+            if (!source) {
+                throw new Error("L'élément modèle PDF (#cv-pdf-template) est introuvable.");
             }
 
-            // 4. Charger html2pdf dynamiquement
-            const html2pdfModule = await import('html2pdf.js');
-            const html2pdf = html2pdfModule.default || html2pdfModule;
+            // 1. Créer un conteneur temporaire pour la capture
+            // Positionné en absolute top:0 left:0 sous le reste de la page (z-index: -99999)
+            // pour être invisible à l'écran mais parfaitement calculable par html2canvas
+            container = document.createElement('div');
+            container.style.position = 'absolute';
+            container.style.top = '0px';
+            container.style.left = '0px';
+            container.style.width = '794px';
+            container.style.zIndex = '-99999';
+            container.style.opacity = '1';
+            container.style.pointerEvents = 'none';
+            container.style.backgroundColor = '#ffffff';
 
-            // 5. Générer et télécharger le PDF
-            await html2pdf().set({
-                margin:      [8, 8, 8, 8],
-                filename:    'CV_Martin_Delory_Java_Backend.pdf',
-                image:       { type: 'jpeg', quality: 0.97 },
-                html2canvas: {
-                    scale:           2,
-                    useCORS:         true,
-                    allowTaint:      true,
-                    logging:         false,
-                    backgroundColor: '#ffffff',
-                },
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-            }).from(element).save();
+            // 2. Cloner le template dans le conteneur
+            const clone = source.cloneNode(true);
+            clone.removeAttribute('id');
+            clone.style.position = 'static';
+            clone.style.left = '0px';
+            clone.style.top = '0px';
+            clone.style.width = '794px';
+            clone.style.visibility = 'visible';
+            clone.style.opacity = '1';
+            clone.style.display = 'block';
 
-        } catch (err) {
-            console.error('[PDF] Erreur génération :', err);
-            alert('Erreur lors de la génération du PDF. Consultez la console pour plus de détails.');
+            container.appendChild(clone);
+            document.body.appendChild(container);
+
+            // 3. Attendre que les images (photo de profil) du clone soient bien chargées
+            const images = Array.from(clone.getElementsByTagName('img'));
+            await Promise.all(
+                images.map((img) => {
+                    if (img.complete && img.naturalWidth !== 0) return Promise.resolve();
+                    return new Promise((resolve) => {
+                        img.onload = resolve;
+                        img.onerror = resolve;
+                    });
+                })
+            );
+
+            // Petite pause pour garantir que le moteur de rendu du navigateur a peint l'élément
+            await new Promise((r) => setTimeout(r, 150));
+
+            // 4. Capture haute définition via html2canvas
+            const canvas = await html2canvas(clone, {
+                scale: 2,
+                useCORS: true,
+                allowTaint: true,
+                backgroundColor: '#ffffff',
+                logging: false,
+                windowWidth: 794,
+            });
+
+            // 5. Nettoyer le conteneur du DOM immédiatement
+            if (container && container.parentNode) {
+                container.parentNode.removeChild(container);
+                container = null;
+            }
+
+            // 6. Génération du fichier PDF via jsPDF
+            const imgData = canvas.toDataURL('image/jpeg', 0.98);
+
+            const pdf = new jsPDF({
+                orientation: 'portrait',
+                unit: 'mm',
+                format: 'a4',
+            });
+
+            const pdfWidth = pdf.internal.pageSize.getWidth();   // 210 mm
+            const pdfHeight = pdf.internal.pageSize.getHeight(); // 297 mm
+
+            const imgWidth = pdfWidth;
+            const imgHeight = (canvas.height * pdfWidth) / canvas.width;
+
+            // Si le contenu tient dans une page A4
+            if (imgHeight <= pdfHeight) {
+                pdf.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight);
+            } else {
+                // Ajuster le ratio pour faire tenir l'ensemble sur 1 seule page A4 propre
+                const scaleFactor = pdfHeight / imgHeight;
+                const fitWidth = pdfWidth * scaleFactor;
+                const marginX = (pdfWidth - fitWidth) / 2;
+                pdf.addImage(imgData, 'JPEG', marginX, 0, fitWidth, pdfHeight);
+            }
+
+            // Téléchargement du fichier PDF
+            pdf.save('CV_Martin_Delory_Java_Backend.pdf');
+
+        } catch (error) {
+            console.error('Erreur lors de la génération du PDF :', error);
+            alert('Une erreur est survenue lors du téléchargement du PDF. Détails dans la console.');
         } finally {
-            // 6. Restaurer le template en position masquée
-            window.dispatchEvent(new Event('pdf:capture:done'));
-            // 7. Supprimer l'overlay
-            if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+            if (container && container.parentNode) {
+                container.parentNode.removeChild(container);
+            }
             setLoading(false);
         }
     };
@@ -79,6 +121,7 @@ const PDFDownloadButton = ({ className = '', style = {}, variant = 'primary' }) 
         <button
             onClick={handleDownload}
             disabled={loading}
+            className={`btn-pdf ${className}`}
             title="Télécharger le CV au format PDF"
             style={{
                 display: 'inline-flex',
@@ -90,11 +133,11 @@ const PDFDownloadButton = ({ className = '', style = {}, variant = 'primary' }) 
                 fontWeight: '600',
                 borderRadius: '6px',
                 border: '1px solid var(--color-primary)',
-                backgroundColor: isNav ? 'rgba(59,130,246,0.15)' : 'var(--color-primary)',
+                backgroundColor: isNav ? 'rgba(59, 130, 246, 0.15)' : 'var(--color-primary)',
                 color: '#ffffff',
                 cursor: loading ? 'wait' : 'pointer',
                 transition: 'all 0.3s ease',
-                boxShadow: isNav ? 'none' : '0 4px 14px rgba(59,130,246,0.4)',
+                boxShadow: isNav ? 'none' : '0 4px 14px rgba(59, 130, 246, 0.4)',
                 opacity: loading ? 0.8 : 1,
                 ...style,
             }}
@@ -106,7 +149,7 @@ const PDFDownloadButton = ({ className = '', style = {}, variant = 'primary' }) 
             }}
             onMouseLeave={(e) => {
                 if (!loading) {
-                    e.currentTarget.style.backgroundColor = isNav ? 'rgba(59,130,246,0.15)' : 'var(--color-primary)';
+                    e.currentTarget.style.backgroundColor = isNav ? 'rgba(59, 130, 246, 0.15)' : 'var(--color-primary)';
                     e.currentTarget.style.transform = 'translateY(0)';
                 }
             }}

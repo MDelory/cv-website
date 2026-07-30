@@ -38,13 +38,13 @@ const About = () => {
                                     width: '100%',
                                     height: '100%',
                                     objectFit: 'cover',
-                                    objectPosition: 'center 18%',
-                                    transform: 'scale(1.3)',
+                                    objectPosition: 'center 25%',
+                                    transform: 'scale(1.08)',
                                     transformOrigin: 'center 20%',
                                     transition: 'transform 0.5s ease'
                                 }}
-                                onMouseEnter={(e) => e.target.style.transform = 'scale(1.38)'}
-                                onMouseLeave={(e) => e.target.style.transform = 'scale(1.3)'}
+                                onMouseEnter={(e) => e.target.style.transform = 'scale(1.14)'}
+                                onMouseLeave={(e) => e.target.style.transform = 'scale(1.08)'}
                             />
                             <div style={{
                                 position: 'absolute',
