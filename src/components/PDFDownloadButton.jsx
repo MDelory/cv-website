@@ -7,44 +7,60 @@ const PDFDownloadButton = ({ className = '', style = {}, variant = 'primary' }) 
     const handleDownload = async () => {
         setLoading(true);
         try {
-            const element = document.getElementById('cv-pdf-template');
-            if (!element) {
-                console.error("Élément modèle PDF introuvable.");
-                setLoading(false);
-                return;
-            }
-
-            // Temporarily adjust styles for clean rendering
-            const originalPosition = element.style.position;
-            const originalLeft = element.style.left;
-            const originalTop = element.style.top;
-            const originalZIndex = element.style.zIndex;
-
-            element.style.position = 'fixed';
-            element.style.left = '0px';
-            element.style.top = '0px';
-            element.style.zIndex = '-9999';
-
             const html2pdfModule = await import('html2pdf.js');
             const html2pdf = html2pdfModule.default || html2pdfModule;
 
+            const source = document.getElementById('cv-pdf-template');
+            if (!source) {
+                console.error('PDFTemplate introuvable dans le DOM.');
+                return;
+            }
+
+            // Cloner le template et l'injecter dans le DOM en position visible
+            // mais derrière le fond sombre de la page (z-index: -1)
+            // html2canvas capture l'élément d'après ses coordonnées absolues
+            const clone = source.cloneNode(true);
+            clone.removeAttribute('id'); // éviter duplications d'ID
+
+            clone.style.position = 'fixed';
+            clone.style.top = '0px';
+            clone.style.left = '0px';
+            clone.style.width = '794px'; // ~210mm @ 96dpi
+            clone.style.backgroundColor = '#ffffff';
+            clone.style.color = '#1e293b';
+            clone.style.zIndex = '-1'; // derrière le fond sombre du site
+            clone.style.pointerEvents = 'none';
+            clone.style.opacity = '1';
+            clone.style.visibility = 'visible';
+            clone.style.display = 'block';
+            clone.style.padding = '32px';
+
+            document.body.appendChild(clone);
+
+            // Laisser le navigateur effectuer le rendu du clone
+            await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+
             const opt = {
-                margin:       [6, 6, 6, 6],
-                filename:     'CV_Martin_Delory_Java_Backend.pdf',
-                image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2, useCORS: true, logging: false },
-                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                margin:      0,
+                filename:    'CV_Martin_Delory_Java_Backend.pdf',
+                image:       { type: 'jpeg', quality: 0.98 },
+                html2canvas: {
+                    scale: 2,
+                    useCORS: true,
+                    logging: false,
+                    backgroundColor: '#ffffff',
+                    windowWidth: 794,
+                    scrollX: 0,
+                    scrollY: 0,
+                },
+                jsPDF: { unit: 'px', format: 'a4', orientation: 'portrait', hotfixes: ['px_scaling'] }
             };
 
-            await html2pdf().set(opt).from(element).save();
+            await html2pdf().set(opt).from(clone).save();
 
-            // Restore original styles
-            element.style.position = originalPosition;
-            element.style.left = originalLeft;
-            element.style.top = originalTop;
-            element.style.zIndex = originalZIndex;
+            document.body.removeChild(clone);
         } catch (error) {
-            console.error("Erreur lors de la génération du PDF :", error);
+            console.error('Erreur génération PDF :', error);
         } finally {
             setLoading(false);
         }
@@ -57,6 +73,7 @@ const PDFDownloadButton = ({ className = '', style = {}, variant = 'primary' }) 
             onClick={handleDownload}
             disabled={loading}
             className={`btn-pdf ${className}`}
+            title="Télécharger le CV au format PDF"
             style={{
                 display: 'inline-flex',
                 alignItems: 'center',
