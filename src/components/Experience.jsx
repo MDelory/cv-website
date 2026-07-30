@@ -106,19 +106,19 @@ const Experience = () => {
                         {/* Group 1: NTICO */}
                         <ExperienceGroup>
                             <ExperienceItem
-                                title="Développeur Backend"
+                                title="Développeur Backend Java & Microservices"
                                 company="NTICO"
                                 client="KIABI"
                                 startDate="2024-02-11"
-                                description="Mission Client - Analyse & Développements Back, Déploiements, Maintenance - Env. Technique: SpringBoot / GCP / Oracle / Postgres"
+                                description="Mission Client - Conception et développement d'une architecture globale en Écosystème Microservices à forte charge. Conception d'APIs RESTful résilientes, déploiement sur Google Cloud Platform (GCP), optimisation des requêtes et pipelines CI/CD. - Env. Technique: Java 17, Java 21 / Spring Boot 3 / Écosystème Microservices / GCP / Docker / Oracle / Postgres / Kafka"
                             />
                             <ExperienceItem
-                                title="Développeur Backend"
+                                title="Développeur Backend Java"
                                 company="NTICO"
                                 client="Yzee Service"
                                 startDate="2022-02-01"
                                 endDate="2024-02-10"
-                                description="Mission Client - Analyse & Développements Back, Déploiements, Maintenance - Env. Technique: SpringBoot / REDIS / Python / Postgres"
+                                description="Mission Client - Développements Back-end et intégration d'APIs au sein d'un Écosystème Microservices. Optimisation des performances avec mise en place de cache Redis, automatisation des builds et suivi de production. - Env. Technique: Java 11, Java 17 / Spring Boot / Écosystème Microservices / REDIS / Python / Postgres / Docker"
                                 isLast={true}
                             />
                         </ExperienceGroup>
@@ -126,12 +126,12 @@ const Experience = () => {
                         {/* Group 2: Quadra-Informatique */}
                         <ExperienceGroup>
                             <ExperienceItem
-                                title="Développeur Full Stack"
+                                title="Développeur Full Stack & Référent Technique"
                                 company="Quadra-Informatique"
-                                client
+                                client="Centre de service Secteur Public (CAPDEMAT)"
                                 startDate="2018-01-01"
                                 endDate="2022-02-21"
-                                description="Centre de service Secteur Publique - CAPDEMAT - Développements, Gestion de projet, Audit, Analyse, Déploiements et Maintenance - Env. Technique: PHP, HTML/CSS, Javascript/JQuery, SQL, Wordpress, SuiteCRM"
+                                description="Centre de service Secteur Public - Audit d'applications, développements, architecture Web Services et gestion de projet. Migration et maintenance d'applications métier. - Env. Technique: Java 8, Java 11 / PHP / Symfony / HTML/CSS / Javascript / SQL / Web Services REST & SOAP"
                             />
                             <ExperienceItem
                                 title="Développeur Full Stack"
@@ -139,7 +139,7 @@ const Experience = () => {
                                 client="Weldom (Clermont de l'Oise)"
                                 startDate="2017-02-01"
                                 endDate="2017-12-31"
-                                description="Mission Client -Reporting opérationnel DashBoard / JasperReport, ZPL, Env. Technique: WMOS, HTML/CSS, Javascript/JQuery, SQL, JasperReport, ZPL"
+                                description="Mission Client - Reporting opérationnel DashBoard / JasperReport, ZPL - Env. Technique: WMOS, HTML/CSS, Javascript/JQuery, SQL, JasperReport, ZPL"
                                 isLast={true}
                             />
                         </ExperienceGroup>

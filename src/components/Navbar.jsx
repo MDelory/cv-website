@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import PDFDownloadButton from './PDFDownloadButton';
 
 const Navbar = () => {
     const [scrolled, setScrolled] = useState(false);
@@ -97,7 +98,7 @@ const Navbar = () => {
                 </a>
 
                 {/* Desktop Navigation */}
-                <nav className="nav-desktop">
+                <nav className="nav-desktop" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
                     <ul className="nav-links-desktop">
                         {navLinks.map((link) => {
                             const isActive = activeSection === link.id;
@@ -114,6 +115,7 @@ const Navbar = () => {
                             );
                         })}
                     </ul>
+                    <PDFDownloadButton variant="nav" />
                 </nav>
 
                 {/* Mobile Toggle Button */}
@@ -155,6 +157,9 @@ const Navbar = () => {
                                 </li>
                             );
                         })}
+                        <li style={{ marginTop: '1rem', animationDelay: isMobileMenuOpen ? '0.5s' : '0s' }}>
+                            <PDFDownloadButton variant="primary" />
+                        </li>
                     </ul>
                 </div>
             </div>

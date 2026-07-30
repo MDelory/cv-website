@@ -5,6 +5,7 @@ import Experience from './components/Experience';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
 import Navbar from './components/Navbar';
+import PDFTemplate from './components/PDFTemplate';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Experience />
       <Skills />
       <Contact />
+      <PDFTemplate />
     </div>
   );
 }

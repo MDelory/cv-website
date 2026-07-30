@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowDown } from 'lucide-react';
 import ParticleBackground from './ParticleBackground';
+import PDFDownloadButton from './PDFDownloadButton';
 
 const Hero = () => {
     return (
@@ -34,7 +35,7 @@ const Hero = () => {
                     fontSize: 'clamp(0.85rem, 2vw, 1.1rem)',
                     fontWeight: '600'
                 }}>
-                    Développeur Back-End
+                    Développeur Backend Java & Architectures Microservices
                 </h4>
                 <h1 style={{
                     fontSize: 'clamp(2.4rem, 7vw, 5.5rem)',
@@ -53,8 +54,14 @@ const Hero = () => {
                     padding: '0 0.5rem'
                 }}>
                     Conception de systèmes back-end robustes, évolutifs et sécurisés.
-                    Transformer une logique complexe en code élégant.
+                    Spécialiste <strong style={{ color: 'var(--color-accent)' }}>Java (8 → 21/25)</strong>, Spring Boot 3 et architectures <strong style={{ color: 'var(--color-accent)' }}>Microservices</strong>.
                 </p>
+
+                {/* CTA PDF Download */}
+                <div style={{ marginBottom: '2rem' }}>
+                    <PDFDownloadButton variant="primary" />
+                </div>
+
                 <div style={{
                     width: '100%',
                     maxWidth: '800px',
@@ -63,6 +70,7 @@ const Hero = () => {
                     marginTop: '1rem',
                     padding: '0 0.5rem'
                 }}>
+
                     <svg
                         viewBox="0 0 800 180"
                         fill="none"

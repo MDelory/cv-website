@@ -54,8 +54,14 @@ const Skills = () => {
                 }}>
                     <SkillCard
                         icon={Server}
-                        title="Développement"
-                        skills={['Java / Spring Boot', 'PHP / Symfony', 'API RESTful', 'HTML / CSS / JavaScript', 'Node.js / Express']}
+                        title="Développement Back-end"
+                        skills={[
+                            'Java (versions 8, 11, 17, 21, 25)',
+                            'Spring Boot 3 / Framework Spring',
+                            'Écosystème Microservices & REST APIs',
+                            'Clean Code, DDD & TDD',
+                            'PHP / Symfony & Node.js'
+                        ]}
                     />
                     <SkillCard
                         icon={Database}

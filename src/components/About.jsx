@@ -38,13 +38,13 @@ const About = () => {
                                     width: '100%',
                                     height: '100%',
                                     objectFit: 'cover',
-                                    objectPosition: 'bottom center',
-                                    transform: 'scale(1.35)',
-                                    transformOrigin: 'bottom center',
+                                    objectPosition: 'center 18%',
+                                    transform: 'scale(1.3)',
+                                    transformOrigin: 'center 20%',
                                     transition: 'transform 0.5s ease'
                                 }}
-                                onMouseEnter={(e) => e.target.style.transform = 'scale(1.42)'}
-                                onMouseLeave={(e) => e.target.style.transform = 'scale(1.35)'}
+                                onMouseEnter={(e) => e.target.style.transform = 'scale(1.38)'}
+                                onMouseLeave={(e) => e.target.style.transform = 'scale(1.3)'}
                             />
                             <div style={{
                                 position: 'absolute',
@@ -57,13 +57,11 @@ const About = () => {
 
                     <div>
                         <p style={{ fontSize: '1.1rem', marginBottom: '1.5rem', color: 'var(--color-text-muted)' }}>
-                            Je suis un Développeur Back-end passionné de {age} ans.
-                            Intéressé par les nouvelles téchonologies et méthodes de travail. J'aime proposer des idées qui permettent d'améliorer les processus métiers.
-                            Passionné par le développement Back-End et la création d'outils pour faciliter le travail des équipes.
+                            Je suis un Développeur Back-end Senior de {age} ans spécialisé dans l'écosystème **Java (versions 8, 11, 17, 21, 25)** et les architectures en **microservices**.
+                            Intéressé par les nouvelles technologies et méthodes agiles, j'aime concevoir des architectures distribuées hautement disponibles et proposer des solutions innovantes à forte valeur ajoutée métier.
                         </p>
                         <p style={{ fontSize: '1.1rem', marginBottom: '1.5rem', color: 'var(--color-text-muted)' }}>
-                            Je recherche une entreprise innovante et centrée utilisateur pour répondre au mieux aux besoins client,
-                            de son idée à la livraison final du projet, ou participer à l'amélioration d'un projet éxistant.
+                            Je propose mon expertise technique aux entreprises pour les accompagner de la phase d'audit et de conception jusqu'à la livraison et l'optimisation en production de leurs microservices et systèmes complexes.
                         </p>
 
                         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginTop: '2rem' }}>
