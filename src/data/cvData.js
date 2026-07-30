@@ -26,7 +26,7 @@ export const skillCategories = [
         pdfLabel: 'BACKEND & LANGAGES',
         skills: [
             'Java (versions 8, 11, 17, 21, 25)',
-            'Spring Boot 3 / Framework Spring',
+            'Spring Boot 3 & 4 / Framework Spring',
             'Écosystème Microservices & REST APIs',
             'PHP / Symfony & Node.js',
             'Clean Code, DDD & TDD',
@@ -49,7 +49,7 @@ export const skillCategories = [
         pdfLabel: 'DEVOPS & OUTILS',
         skills: [
             'Google Cloud Platform (GCP)',
-            'Docker / Kubernetes',
+            'Docker / Kubernetes (GKE) / CloudRun',
             'Pipelines CI/CD & GitHub Actions',
             'OAuth2 / JWT & Sécurité API',
             'Méthode Agile / Scrum',
@@ -66,12 +66,12 @@ export const experiences = [
         startDate: '2024-02-11',
         endDate: null, // Présent
         description: "Conception et développement d'APIs REST au sein d'un Écosystème Microservices à forte charge (KIABI — retail 35 pays). Déploiement et intégration continue sur Google Cloud Platform (GCP) avec Docker & Kubernetes. Optimisation des requêtes Oracle / PostgreSQL et mise en place de pipelines CI/CD.",
-        envTechnique: 'Java 17, Java 21 · Spring Boot 3 · Microservices · GCP · Docker · Oracle · PostgreSQL · Kafka · CI/CD',
+        envTechnique: 'Java 17, Java 21 · Spring Boot 3 & 4 · Microservices · GCP · Docker · Oracle · PostgreSQL · CI/CD',
         bullets: [
             "Conception et développement d'APIs REST au sein d'un Écosystème Microservices à forte charge (KIABI — retail 35 pays).",
-            "Déploiement et intégration continue sur Google Cloud Platform (GCP) avec Docker & Kubernetes.",
+            "Déploiement et intégration continue sur Google Cloud Platform (GCP) avec Docker & GKE / CloudRun",
             "Optimisation des requêtes Oracle / PostgreSQL, pipelines CI/CD et résilience applicative.",
-            "Env. : Java 17, Java 21 · Spring Boot 3 · Microservices · GCP · Docker · Oracle · PostgreSQL · Kafka · CI/CD"
+            "Env. : Java 17, Java 21 · Spring Boot 3 & 4 · Microservices · GCP · Docker · Oracle · PostgreSQL · CI/CD"
         ]
     },
     {
@@ -82,12 +82,12 @@ export const experiences = [
         startDate: '2022-02-01',
         endDate: '2024-02-10',
         description: "Intégration d'APIs REST dans un Écosystème Microservices — analyse, développement, recette et suivi de production. Mise en œuvre d'un cache distribué Redis pour l'optimisation des performances applicatives. Refactoring et conteneurisation Docker.",
-        envTechnique: 'Java 11, Java 17 · Spring Boot · Microservices · Redis · Python · PostgreSQL · Docker',
+        envTechnique: 'Java 11, Java 17 · Spring Boot 3 · Microservices · Redis · Python · PostgreSQL · Docker',
         bullets: [
             "Intégration d'APIs REST dans un Écosystème Microservices — analyse, développement, recette et suivi de production.",
             "Mise en œuvre d'un cache distribué Redis pour l'optimisation des performances applicatives.",
             "Refactoring et maintenance corrective en environnement Docker conteneurisé.",
-            "Env. : Java 11, Java 17 · Spring Boot · Microservices · Redis · Python · PostgreSQL · Docker"
+            "Env. : Java 11, Java 17 · Spring Boot 3 · Microservices · Redis · Python · PostgreSQL · Docker"
         ]
     },
     {
@@ -98,11 +98,11 @@ export const experiences = [
         startDate: '2018-01-01',
         endDate: '2022-02-21',
         description: "Audit technique, conception d'architectures applicatives et gestion de projet sur des applications métier critiques du secteur public. Développement et exposition de Web Services REST & SOAP sécurisés.",
-        envTechnique: 'Java 8, Java 11 · PHP · Symfony · HTML/CSS · JS · SQL · Web Services REST & SOAP',
+        envTechnique: 'PHP · Symfony · HTML/CSS · JS · SQL · Web Services REST & SOAP',
         bullets: [
             "Audit technique, conception d'architectures applicatives et gestion de projet sur des applications métier critiques.",
             "Développement et exposition de Web Services REST & SOAP sécurisés.",
-            "Env. : Java 8, Java 11 · PHP · Symfony · HTML/CSS · JS/jQuery · SQL · REST/SOAP · SuiteCRM · Wordpress"
+            "Env. : PHP · Symfony · HTML/CSS · JS/jQuery · SQL · REST/SOAP · SuiteCRM · Wordpress"
         ]
     },
     {
