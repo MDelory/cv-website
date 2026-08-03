@@ -1,4 +1,4 @@
-import { calculateAge, calculateDuration } from '../utils/dateUtils';
+import { calculateAge } from '../utils/dateUtils';
 
 export const personalInfo = {
     firstName: 'Martin',

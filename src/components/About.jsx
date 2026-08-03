@@ -1,5 +1,5 @@
 import React from 'react';
-import { getAge, profileSummary } from '../data/cvData';
+import { getAge } from '../data/cvData';
 import { User, Code, Server, MapPin, Car } from 'lucide-react';
 import ParticleBackground from './ParticleBackground';
 import profileImg from '../assets/person_cutout.png';
@@ -36,15 +36,15 @@ const About = () => {
                                 alt="Martin Delory"
                                 style={{
                                     width: '100%',
-                                    height: '100%',
+                                    height: '115%',
                                     objectFit: 'cover',
-                                    objectPosition: 'center 25%',
-                                    transform: 'scale(1.08)',
-                                    transformOrigin: 'center 20%',
+                                    objectPosition: 'center top',
+                                    transform: 'scale(1.05) translateY(-8%)',
+                                    transformOrigin: 'top center',
                                     transition: 'transform 0.5s ease'
                                 }}
-                                onMouseEnter={(e) => e.target.style.transform = 'scale(1.14)'}
-                                onMouseLeave={(e) => e.target.style.transform = 'scale(1.08)'}
+                                onMouseEnter={(e) => e.target.style.transform = 'scale(1.10) translateY(-8%)'}
+                                onMouseLeave={(e) => e.target.style.transform = 'scale(1.05) translateY(-8%)'}
                             />
                             <div style={{
                                 position: 'absolute',

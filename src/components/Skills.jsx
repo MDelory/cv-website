@@ -9,7 +9,9 @@ const iconMap = {
     devops: Shield,
 };
 
-const SkillCard = ({ icon: Icon, title, skills }) => (
+const SkillCard = ({ icon, title, skills }) => {
+    const Icon = icon;
+    return (
     <div style={{
         padding: '2rem',
         background: 'var(--color-bg-secondary)',
@@ -45,7 +47,8 @@ const SkillCard = ({ icon: Icon, title, skills }) => (
             ))}
         </ul>
     </div>
-);
+    );
+};
 
 const Skills = () => {
     return (

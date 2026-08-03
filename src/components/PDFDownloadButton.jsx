@@ -139,6 +139,7 @@ const PDFDownloadButton = ({ className = '', style = {}, variant = 'primary' }) 
                 transition: 'all 0.3s ease',
                 boxShadow: isNav ? 'none' : '0 4px 14px rgba(59, 130, 246, 0.4)',
                 opacity: loading ? 0.8 : 1,
+                marginLeft: isNav ? '20px' : '0',
                 ...style,
             }}
             onMouseEnter={(e) => {

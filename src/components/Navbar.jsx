@@ -98,7 +98,7 @@ const Navbar = () => {
                 </a>
 
                 {/* Desktop Navigation */}
-                <nav className="nav-desktop" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+                <nav className="nav-desktop">
                     <ul className="nav-links-desktop">
                         {navLinks.map((link) => {
                             const isActive = activeSection === link.id;
