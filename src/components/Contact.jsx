@@ -15,7 +15,7 @@ const Contact = () => {
                     maxWidth: '600px',
                     margin: '0 auto 3rem'
                 }}>
-                    Je suis actuellement ouvert à de nouvelles opportunités, y compris pour des projets freelance sur mon temps personnel. Que vous ayez une question ou un projet, je ferai de mon mieux pour vous répondre !
+                    Je suis actuellement ouvert à de nouvelles opportunités. Que vous ayez une question ou un projet, je ferai de mon mieux pour vous répondre !
                 </p>
 
                 <a href="mailto:delorymartin@gmail.com" className="btn" style={{ fontSize: '1.2rem', padding: '1rem 2.5rem' }}>
