@@ -2,20 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import PDFDownloadButton from './PDFDownloadButton';
 
+const NAV_LINKS = [
+    { name: 'Accueil', href: '#home', id: 'home' },
+    { name: 'À propos', href: '#about', id: 'about' },
+    { name: 'Expérience', href: '#experience', id: 'experience' },
+    { name: 'Compétences', href: '#skills', id: 'skills' },
+    { name: 'Contact', href: '#contact', id: 'contact' },
+];
+
 const Navbar = () => {
     const [scrolled, setScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState('home');
 
-    const navLinks = [
-        { name: 'Accueil', href: '#home', id: 'home' },
-        { name: 'À propos', href: '#about', id: 'about' },
-        { name: 'Expérience', href: '#experience', id: 'experience' },
-        { name: 'Compétences', href: '#skills', id: 'skills' },
-        { name: 'Contact', href: '#contact', id: 'contact' },
-    ];
 
-    // Scroll listener for header style changes & active section detection
     useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY > 40) {
@@ -30,7 +30,7 @@ const Navbar = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    // IntersectionObserver for active section tracking
+
     useEffect(() => {
         const observerOptions = {
             root: null,
@@ -47,7 +47,7 @@ const Navbar = () => {
         };
 
         const observer = new IntersectionObserver(handleIntersect, observerOptions);
-        const sectionElements = navLinks.map(link => document.getElementById(link.id)).filter(Boolean);
+        const sectionElements = NAV_LINKS.map(link => document.getElementById(link.id)).filter(Boolean);
 
         sectionElements.forEach(el => observer.observe(el));
 
@@ -100,7 +100,7 @@ const Navbar = () => {
                 {/* Desktop Navigation */}
                 <nav className="nav-desktop">
                     <ul className="nav-links-desktop">
-                        {navLinks.map((link) => {
+                        {NAV_LINKS.map((link) => {
                             const isActive = activeSection === link.id;
                             return (
                                 <li key={link.name}>
@@ -138,7 +138,7 @@ const Navbar = () => {
             >
                 <div className="mobile-menu-content">
                     <ul className="mobile-nav-links">
-                        {navLinks.map((link, index) => {
+                        {NAV_LINKS.map((link, index) => {
                             const isActive = activeSection === link.id;
                             return (
                                 <li
