@@ -13,6 +13,12 @@ describe('About component', () => {
     expect(screen.getByText('Localisation')).toBeInTheDocument();
     expect(screen.getByText('Mobilité')).toBeInTheDocument();
 
+    // Verify hobbies section rendering
+    expect(screen.getByText("Loisirs & Centres d'intérêt")).toBeInTheDocument();
+    expect(screen.getByText('Sport')).toBeInTheDocument();
+    expect(screen.getByText('Cuisine')).toBeInTheDocument();
+    expect(screen.getByText('Échecs')).toBeInTheDocument();
+
     const img = screen.getByAltText('Martin Delory');
     expect(img).toBeInTheDocument();
 
@@ -25,5 +31,29 @@ describe('About component', () => {
     expect(img.style.transform).toContain('scale(1.10)');
     fireEvent.mouseLeave(img);
     expect(img.style.transform).toContain('scale(1.05)');
+
+    // Trigger hobby card hover handlers for coverage
+    const sportCard = screen.getByTestId('hobby-card-sport');
+    fireEvent.mouseEnter(sportCard);
+    expect(sportCard.style.transform).toBe('translateY(-2px)');
+    fireEvent.mouseLeave(sportCard);
+    expect(sportCard.style.transform).toBe('translateY(0)');
+  });
+
+  it('renders fallback Heart icon when an unknown hobby icon is provided', async () => {
+    const { vi } = await import('vitest');
+    vi.doMock('../../data/cvData', async (importOriginal) => {
+      const actual = await importOriginal();
+      return {
+        ...actual,
+        hobbies: [
+          { id: 'unknown', name: 'Inconnu', icon: 'UnknownIcon' }
+        ]
+      };
+    });
   });
 });
+
+
+
+

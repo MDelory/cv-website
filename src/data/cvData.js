@@ -175,3 +175,23 @@ export const education = [
         description: 'Spécialité Mathématiques.'
     }
 ];
+
+export const hobbies = [
+    {
+        id: 'sport',
+        name: 'Sport',
+        icon: 'Dumbbell'
+    },
+    {
+        id: 'cuisine',
+        name: 'Cuisine',
+        icon: 'Utensils'
+    },
+    {
+        id: 'echecs',
+        name: 'Échecs',
+        icon: 'FaChessBishop'
+    }
+];
+
+

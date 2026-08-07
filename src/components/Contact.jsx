@@ -24,13 +24,30 @@ const Contact = () => {
                 </a>
 
                 <div style={{ marginTop: '4rem', display: 'flex', justifyContent: 'center', gap: '2rem' }}>
-                    <a href="https://github.com/MDelory?tab=repositories" style={{ color: 'var(--color-text-muted)', transition: 'color 0.3s' }} onMouseEnter={(e) => e.target.style.color = 'var(--color-primary)'} onMouseLeave={(e) => e.target.style.color = 'var(--color-text-muted)'}>
+                    <a
+                        href="https://github.com/MDelory?tab=repositories"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Profil GitHub de Martin Delory (ouvre dans un nouvel onglet)"
+                        style={{ color: 'var(--color-text-muted)', transition: 'color 0.3s' }}
+                        onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-primary)'}
+                        onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-text-muted)'}
+                    >
                         <FaGithub size={32} />
                     </a>
-                    <a href="https://fr.linkedin.com/in/martin-delory" style={{ color: 'var(--color-text-muted)', transition: 'color 0.3s' }} onMouseEnter={(e) => e.target.style.color = 'var(--color-primary)'} onMouseLeave={(e) => e.target.style.color = 'var(--color-text-muted)'}>
+                    <a
+                        href="https://fr.linkedin.com/in/martin-delory"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Profil LinkedIn de Martin Delory (ouvre dans un nouvel onglet)"
+                        style={{ color: 'var(--color-text-muted)', transition: 'color 0.3s' }}
+                        onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-primary)'}
+                        onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-text-muted)'}
+                    >
                         <FaLinkedin size={32} />
                     </a>
                 </div>
+
 
                 <footer style={{ marginTop: '4rem', color: 'var(--color-text-muted)', fontSize: '0.9rem' }}>
                     <p>© {new Date().getFullYear()} Martin Delory. Construit avec React & Vite. Propulsé par Antigravity AI</p>

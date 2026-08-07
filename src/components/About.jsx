@@ -1,8 +1,17 @@
 import React from 'react';
-import { getAge } from '../data/cvData';
-import { User, Code, Server, MapPin, Car } from 'lucide-react';
+import { getAge, hobbies } from '../data/cvData';
+import { Code, Server, MapPin, Car, Dumbbell, Utensils, Heart } from 'lucide-react';
+import { FaChessBishop } from 'react-icons/fa6';
 import ParticleBackground from './ParticleBackground';
 import profileImg from '../assets/person_cutout.png';
+
+const hobbyIconMap = {
+    Dumbbell,
+    Utensils,
+    FaChessBishop,
+    Crown: FaChessBishop,
+};
+
 
 const About = () => {
     const age = getAge();
@@ -113,6 +122,84 @@ const About = () => {
                                 <p style={{ color: 'var(--color-text-muted)', fontSize: '0.8rem' }}>Permis B - véhiculé</p>
                             </div>
                         </div>
+
+                        {/* Block Loisirs */}
+                        <div style={{
+                            marginTop: '1.5rem',
+                            padding: '1.25rem 1.5rem',
+                            background: 'rgba(10, 10, 10, 0.8)',
+                            borderRadius: '8px',
+                            border: '1px solid #333',
+                            backdropFilter: 'blur(5px)'
+                        }}>
+                            <h3 style={{
+                                fontSize: '1rem',
+                                marginBottom: '1rem',
+                                color: 'white',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '0.5rem'
+                            }}>
+                                <Heart size={20} color="var(--color-primary)" />
+                                <span>Loisirs & Centres d'intérêt</span>
+                            </h3>
+                            <div style={{
+                                display: 'grid',
+                                gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))',
+                                gap: '0.8rem'
+                            }}>
+                                {hobbies.map((hobby) => {
+                                    const Icon = hobbyIconMap[hobby.icon] || Heart;
+                                    return (
+                                        <div
+                                            key={hobby.id}
+                                            data-testid={`hobby-card-${hobby.id}`}
+                                            style={{
+
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                gap: '0.75rem',
+                                                padding: '0.6rem 0.8rem',
+                                                background: 'rgba(255, 255, 255, 0.03)',
+                                                borderRadius: '6px',
+                                                border: '1px solid rgba(255, 255, 255, 0.06)',
+                                                transition: 'all 0.3s ease',
+                                                cursor: 'default'
+                                            }}
+                                            onMouseEnter={(e) => {
+                                                e.currentTarget.style.transform = 'translateY(-2px)';
+                                                e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.4)';
+                                                e.currentTarget.style.background = 'rgba(59, 130, 246, 0.08)';
+                                            }}
+                                            onMouseLeave={(e) => {
+                                                e.currentTarget.style.transform = 'translateY(0)';
+                                                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.06)';
+                                                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)';
+                                            }}
+                                        >
+                                            <div style={{
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                width: '34px',
+                                                height: '34px',
+                                                borderRadius: '50%',
+                                                background: 'rgba(59, 130, 246, 0.15)',
+                                                color: 'var(--color-accent)',
+                                                flexShrink: 0
+                                            }}>
+                                                <Icon size={18} color="var(--color-accent)" />
+                                            </div>
+                                            <div>
+                                                <div style={{ fontSize: '0.95rem', fontWeight: '600', color: 'white' }}>{hobby.name}</div>
+                                            </div>
+
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -121,3 +208,4 @@ const About = () => {
 };
 
 export default About;
+

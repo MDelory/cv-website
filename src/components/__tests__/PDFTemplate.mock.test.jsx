@@ -52,7 +52,17 @@ const mockData = vi.hoisted(() => ({
             description: '',
         },
     ],
+
+    hobbies: [
+        {
+            id: 'sport',
+            name: 'Sport',
+            icon: 'Dumbbell',
+            description: 'Sport',
+        },
+    ],
 }));
+
 
 vi.mock('../../data/cvData', () => mockData);
 

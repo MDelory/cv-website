@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { personalInfo, getAge, profileSummary, skillCategories, experiences, education } from '../cvData';
+import { personalInfo, getAge, profileSummary, skillCategories, experiences, education, hobbies } from '../cvData';
 
 describe('cvData module', () => {
   it('should export valid personalInfo', () => {
@@ -54,4 +54,19 @@ describe('cvData module', () => {
       expect(edu.title).toBeDefined();
     });
   });
+
+  it('should export hobbies containing Sport, Cuisine, and Échecs', () => {
+    expect(Array.isArray(hobbies)).toBe(true);
+    expect(hobbies.length).toBe(3);
+    const names = hobbies.map(h => h.name);
+    expect(names).toContain('Sport');
+    expect(names).toContain('Cuisine');
+    expect(names).toContain('Échecs');
+    hobbies.forEach(hobby => {
+      expect(hobby.id).toBeDefined();
+      expect(hobby.icon).toBeDefined();
+    });
+  });
 });
+
+

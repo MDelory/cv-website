@@ -38,6 +38,13 @@ describe('dateUtils', () => {
       // Born on Dec 10, 1990 -> on Aug 3, 2026 age is 35
       expect(calculateAge('1990-12-10')).toBe(35);
     });
+
+    it('should handle empty, null or invalid date strings safely', () => {
+      expect(calculateAge('')).toBe(0);
+      expect(calculateAge(null)).toBe(0);
+      expect(calculateAge('invalid-date')).toBe(0);
+      expect(calculateAge('2099-01-01')).toBe(0);
+    });
   });
 
   describe('calculateDuration', () => {
@@ -74,5 +81,13 @@ describe('dateUtils', () => {
       const result = calculateDuration('2024-02-11');
       expect(result).toBe('2 ans, 6 mois');
     });
+
+    it('should handle invalid or empty dates gracefully', () => {
+      expect(calculateDuration('')).toBe('');
+      expect(calculateDuration('invalid')).toBe('');
+      expect(calculateDuration('2026-01-01', 'invalid')).toBe('');
+      expect(calculateDuration('2030-01-01', '2026-01-01')).toBe('0 mois');
+    });
   });
 });
+

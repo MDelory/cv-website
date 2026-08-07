@@ -13,7 +13,9 @@ describe('PDFTemplate component', () => {
     expect(screen.getByText('Compétences Techniques')).toBeInTheDocument();
     expect(screen.getByText('Expériences Professionnelles')).toBeInTheDocument();
     expect(screen.getByText('Formation')).toBeInTheDocument();
+    expect(screen.getByText('Loisirs')).toBeInTheDocument();
   });
+
 
   it('renders metaStr with company + client when exp.client exists (true-branch)', () => {
     render(<PDFTemplate />);

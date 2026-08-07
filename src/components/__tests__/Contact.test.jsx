@@ -17,6 +17,10 @@ describe('Contact component', () => {
 
     expect(githubAnchor).toBeDefined();
     expect(linkedinAnchor).toBeDefined();
+    expect(githubAnchor).toHaveAttribute('target', '_blank');
+    expect(githubAnchor).toHaveAttribute('rel', 'noopener noreferrer');
+    expect(linkedinAnchor).toHaveAttribute('target', '_blank');
+    expect(linkedinAnchor).toHaveAttribute('rel', 'noopener noreferrer');
 
     if (githubAnchor) {
       fireEvent.mouseEnter(githubAnchor);
@@ -33,3 +37,4 @@ describe('Contact component', () => {
     }
   });
 });
+

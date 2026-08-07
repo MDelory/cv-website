@@ -1,7 +1,8 @@
 import React from 'react';
-import { personalInfo, getAge, profileSummary, skillCategories, experiences, education } from '../data/cvData';
+import { personalInfo, getAge, profileSummary, skillCategories, experiences, education, hobbies } from '../data/cvData';
 import { calculateDuration } from '../utils/dateUtils';
 import profileImg from '../assets/person_cutout.png';
+
 
 /**
  * PDFTemplate - Template du CV exportable en PDF (A4).
@@ -192,8 +193,24 @@ const PDFTemplate = () => {
                 </div>
             </div>
 
+            {/* ─── LOISIRS ─── */}
+            {hobbies && hobbies.length > 0 && (
+                <div style={{ marginTop: '10px' }}>
+                    <div style={H.section}>Loisirs</div>
+                    <div style={{ display: 'flex', gap: '20px', fontSize: '8pt', color: C.body }}>
+                        {hobbies.map((hobby) => (
+                            <div key={hobby.id} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                                <span style={{ fontWeight: '700', color: C.primary }}>•</span>
+                                <span><strong style={{ color: C.dark }}>{hobby.name}</strong></span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
+
         </div>
     );
 };
+
 
 export default PDFTemplate;
