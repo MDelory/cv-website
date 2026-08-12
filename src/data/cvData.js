@@ -51,6 +51,7 @@ export const skillCategories = [
             'Google Cloud Platform (GCP)',
             'Docker / Kubernetes (GKE) / CloudRun',
             'Pipelines CI/CD & GitHub Actions',
+            'Dynatrace & Datadog',
             'OAuth2 / JWT & Sécurité API',
             'Méthode Agile / Scrum',
         ]
