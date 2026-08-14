@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { personalInfo, getAge, profileSummary, skillCategories, experiences, education, hobbies } from '../cvData';
+import { personalInfo, getAge, profileSummary, skillCategories, experiences, education, hobbies, sideProjects } from '../cvData';
 
 describe('cvData module', () => {
   it('should export valid personalInfo', () => {
@@ -67,6 +67,24 @@ describe('cvData module', () => {
       expect(hobby.icon).toBeDefined();
     });
   });
+
+  it('should export sideProjects with required items and properties', () => {
+    expect(Array.isArray(sideProjects)).toBe(true);
+    expect(sideProjects.length).toBe(4);
+    const titles = sideProjects.map(p => p.title);
+    expect(titles).toContain('docGenerator');
+    expect(titles).toContain('BriefMe');
+    expect(titles).toContain('Site CV (Version React)');
+    expect(titles).toContain('Site CV (Version Angular)');
+
+    sideProjects.forEach(project => {
+      expect(project.id).toBeDefined();
+      expect(project.title).toBeDefined();
+      expect(project.stack).toBeDefined();
+      expect(project.description).toBeDefined();
+    });
+  });
 });
+
 
 

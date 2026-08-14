@@ -61,6 +61,7 @@ const mockData = vi.hoisted(() => ({
             description: 'Sport',
         },
     ],
+    sideProjects: [],
 }));
 
 

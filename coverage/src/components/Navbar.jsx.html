@@ -232,8 +232,15 @@
 <a name='L167'></a><a href='#L167'>167</a>
 <a name='L168'></a><a href='#L168'>168</a>
 <a name='L169'></a><a href='#L169'>169</a>
-<a name='L170'></a><a href='#L170'>170</a>
-<a name='L171'></a><a href='#L171'>171</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L170'></a><a href='#L170'>170</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -241,14 +248,6 @@
 <span class="cline-any cline-yes">35x</span>
 <span class="cline-any cline-yes">35x</span>
 <span class="cline-any cline-yes">35x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">35x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">35x</span>
@@ -402,25 +401,24 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import PDFDownloadButton from './PDFDownloadButton';
+&nbsp;
+const NAV_LINKS = [
+    { name: 'Accueil', href: '#home', id: 'home' },
+    { name: 'À propos', href: '#about', id: 'about' },
+    { name: 'Expérience', href: '#experience', id: 'experience' },
+    { name: 'Compétences', href: '#skills', id: 'skills' },
+    { name: 'Contact', href: '#contact', id: 'contact' },
+];
 &nbsp;
 const Navbar = () =&gt; {
     const [scrolled, setScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState('home');
 &nbsp;
-    const navLinks = [
-        { name: 'Accueil', href: '#home', id: 'home' },
-        { name: 'À propos', href: '#about', id: 'about' },
-        { name: 'Expérience', href: '#experience', id: 'experience' },
-        { name: 'Compétences', href: '#skills', id: 'skills' },
-        { name: 'Contact', href: '#contact', id: 'contact' },
-    ];
 &nbsp;
-    // Scroll listener for header style changes &amp; active section detection
     useEffect(() =&gt; {
         const handleScroll = () =&gt; {
             if (window.scrollY &gt; 40) {
@@ -435,7 +433,7 @@ const Navbar = () =&gt; {
         return () =&gt; window.removeEventListener('scroll', handleScroll);
     }, []);
 &nbsp;
-    // IntersectionObserver for active section tracking
+&nbsp;
     useEffect(() =&gt; {
         const observerOptions = {
             root: null,
@@ -452,7 +450,7 @@ const Navbar = () =&gt; {
         };
 &nbsp;
         const observer = new IntersectionObserver(handleIntersect, observerOptions);
-        const sectionElements = navLinks.map(link =&gt; document.getElementById(link.id)).filter(Boolean);
+        const sectionElements = NAV_LINKS.map(link =&gt; document.getElementById(link.id)).filter(Boolean);
 &nbsp;
         sectionElements.forEach(el =&gt; observer.observe(el));
 &nbsp;
@@ -505,7 +503,7 @@ const Navbar = () =&gt; {
                 {/* Desktop Navigation */}
                 &lt;nav className="nav-desktop"&gt;
                     &lt;ul className="nav-links-desktop"&gt;
-                        {navLinks.map((link) =&gt; {
+                        {NAV_LINKS.map((link) =&gt; {
                             const isActive = activeSection === link.id;
                             return (
                                 &lt;li key={link.name}&gt;
@@ -543,7 +541,7 @@ const Navbar = () =&gt; {
             &gt;
                 &lt;div className="mobile-menu-content"&gt;
                     &lt;ul className="mobile-nav-links"&gt;
-                        {navLinks.map((link, index) =&gt; {
+                        {NAV_LINKS.map((link, index) =&gt; {
                             const isActive = activeSection === link.id;
                             return (
                                 &lt;li
@@ -572,15 +570,14 @@ const Navbar = () =&gt; {
     );
 };
 &nbsp;
-export default Navbar;
-&nbsp;</pre></td></tr></table></pre>
+export default Navbar;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-08-07T14:06:55.023Z
+                at 2026-08-14T10:02:45.482Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

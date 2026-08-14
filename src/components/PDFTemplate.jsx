@@ -1,5 +1,5 @@
 import React from 'react';
-import { personalInfo, getAge, profileSummary, skillCategories, experiences, education, hobbies } from '../data/cvData';
+import { personalInfo, getAge, profileSummary, skillCategories, experiences, education, hobbies, sideProjects } from '../data/cvData';
 import { calculateDuration } from '../utils/dateUtils';
 import profileImg from '../assets/person_cutout.png';
 
@@ -193,6 +193,29 @@ const PDFTemplate = () => {
                 </div>
             </div>
 
+            {/* ─── SIDE PROJECTS DYNAMIQUES ─── */}
+            {sideProjects && sideProjects.length > 0 && (
+                <div style={{ marginTop: '10px' }}>
+                    <div style={H.section}>Projets Personnels / Side Projects</div>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
+                        {sideProjects.map((project) => (
+                            <div key={project.id} style={{ backgroundColor: C.bgSoft, padding: '6px 8px', borderRadius: '4px', borderLeft: `2.5px solid ${C.primary}` }}>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                    <span style={{ fontWeight: '700', fontSize: '8.5pt', color: C.dark }}>{project.title}</span>
+                                    {project.status && (
+                                        <span style={{ fontSize: '6.5pt', fontWeight: '700', color: '#b45309', backgroundColor: '#fef3c7', padding: '1px 4px', borderRadius: '3px' }}>
+                                            {project.status}
+                                        </span>
+                                    )}
+                                </div>
+                                <div style={{ fontSize: '7.5pt', color: C.primary, fontWeight: '600' }}>{project.stack}</div>
+                                <div style={{ fontSize: '7pt', color: C.body, lineHeight: '1.35', marginTop: '2px' }}>{project.description}</div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
+
             {/* ─── LOISIRS ─── */}
             {hobbies && hobbies.length > 0 && (
                 <div style={{ marginTop: '10px' }}>
@@ -214,3 +237,4 @@ const PDFTemplate = () => {
 
 
 export default PDFTemplate;
+

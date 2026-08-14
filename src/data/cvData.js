@@ -195,4 +195,40 @@ export const hobbies = [
     }
 ];
 
+export const sideProjects = [
+    {
+        id: 'doc-generator',
+        title: 'docGenerator',
+        status: 'En cours de développement',
+        stack: 'React · Vite · Java · Google OAuth2',
+        description: 'Génération automatique de documentation technique à partir des sources applicatives. Interface React/Vite et backend Java sécurisé via Google OAuth.',
+        category: 'Full Stack'
+    },
+    {
+        id: 'briefme',
+        title: 'BriefMe',
+        status: null,
+        stack: 'Java 21 · Spring Boot · RSS Feeds · Mail',
+        description: 'Service d\'envoi quotidien de résumés d\'actualités par email basés sur l\'agrégation et le filtrage de flux RSS.',
+        category: 'Backend Java'
+    },
+    {
+        id: 'cv-react',
+        title: 'Site CV (Version React)',
+        status: null,
+        stack: 'React 19 · Vite · Vitest · CSS3',
+        description: 'Version actuelle du CV en ligne : vitrine interactive et responsive avec export PDF dynamique et suite de tests automatisée.',
+        category: 'Web App'
+    },
+    {
+        id: 'cv-angular',
+        title: 'Site CV (Version Angular)',
+        status: null,
+        stack: 'Angular 12/13 · TypeScript · RxJS',
+        description: 'Première version du site CV développée sous Angular 12/13, axée sur l\'architecture orientée composants.',
+        category: 'Web App'
+    }
+];
+
+
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import { calculateDuration } from '../utils/dateUtils';
-import { Briefcase, GraduationCap } from 'lucide-react';
+import { Briefcase, GraduationCap, FolderGit2 } from 'lucide-react';
 import ParticleBackground from './ParticleBackground';
-import { experiences, education } from '../data/cvData';
+import { experiences, education, sideProjects } from '../data/cvData';
 
 const ExperienceItem = ({ title, company, client, startDate, endDate, description, envTechnique, isLast }) => {
     const duration = calculateDuration(startDate, endDate || new Date());
@@ -89,6 +89,37 @@ const EducationItem = ({ title, establishment, year, description }) => (
     </div>
 );
 
+const SideProjectItem = ({ title, status, stack, description }) => (
+    <div style={{ marginBottom: '2rem', paddingLeft: '1.5rem', borderLeft: '2px solid var(--color-primary)', position: 'relative' }}>
+        <div style={{
+            position: 'absolute',
+            left: '-5px',
+            top: '0.5rem',
+            width: '8px',
+            height: '8px',
+            background: 'var(--color-primary)',
+            borderRadius: '50%'
+        }} />
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '0.2rem' }}>
+            <h4 style={{ color: 'var(--color-primary)', fontSize: '1rem', margin: 0 }}>{title}</h4>
+            {status && (
+                <span style={{
+                    fontSize: '0.72rem',
+                    padding: '0.15rem 0.5rem',
+                    background: 'rgba(234, 179, 8, 0.15)',
+                    color: '#eab308',
+                    borderRadius: '12px',
+                    fontWeight: '600'
+                }}>
+                    {status}
+                </span>
+            )}
+        </div>
+        <p style={{ color: 'var(--color-text)', fontWeight: '500', fontSize: '0.85rem', marginBottom: '0.4rem' }}>{stack}</p>
+        {description && <p style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)', lineHeight: '1.4' }}>{description}</p>}
+    </div>
+);
+
 const Experience = () => {
     // Grouper par entreprise si désiré, ou afficher la liste ordonnée
     const nticoExps = experiences.filter(e => e.company === 'NTICO');
@@ -165,7 +196,7 @@ const Experience = () => {
                         ))}
                     </div>
 
-                    {/* Section Formation */}
+                    {/* Section Formation & Side Projects */}
                     <div style={{ flex: '1', minWidth: '250px' }}>
                         <h3 style={{ fontSize: '1.5rem', marginBottom: '2rem', color: 'var(--color-text)', display: 'flex', alignItems: 'center', gap: '1rem' }}>
                             <GraduationCap size={28} color="var(--color-primary)" />
@@ -180,6 +211,20 @@ const Experience = () => {
                                 description={edu.description}
                             />
                         ))}
+
+                        <h3 style={{ fontSize: '1.5rem', marginTop: '3rem', marginBottom: '2rem', color: 'var(--color-text)', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                            <FolderGit2 size={28} color="var(--color-primary)" />
+                            Side Projects
+                        </h3>
+                        {sideProjects.map((project) => (
+                            <SideProjectItem
+                                key={project.id}
+                                title={project.title}
+                                status={project.status}
+                                stack={project.stack}
+                                description={project.description}
+                            />
+                        ))}
                     </div>
                 </div>
             </div>
@@ -188,3 +233,4 @@ const Experience = () => {
 };
 
 export default Experience;
+

@@ -13,6 +13,7 @@ describe('PDFTemplate component', () => {
     expect(screen.getByText('Compétences Techniques')).toBeInTheDocument();
     expect(screen.getByText('Expériences Professionnelles')).toBeInTheDocument();
     expect(screen.getByText('Formation')).toBeInTheDocument();
+    expect(screen.getByText('Projets Personnels / Side Projects')).toBeInTheDocument();
     expect(screen.getByText('Loisirs')).toBeInTheDocument();
   });
 
@@ -39,4 +40,12 @@ describe('PDFTemplate component', () => {
     ).toBeGreaterThan(0);
   });
 
+  it('renders side projects in PDF template', () => {
+    render(<PDFTemplate />);
+    expect(screen.getByText('Projets Personnels / Side Projects')).toBeInTheDocument();
+    expect(screen.getAllByText('docGenerator')[0]).toBeInTheDocument();
+    expect(screen.getAllByText('BriefMe')[0]).toBeInTheDocument();
+  });
+
 });
+

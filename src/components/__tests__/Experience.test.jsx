@@ -4,7 +4,7 @@ import { describe, it, expect, vi } from 'vitest';
 import Experience from '../Experience';
 
 describe('Experience component', () => {
-  it('renders experience items and education list', () => {
+  it('renders experience items, education list, and side projects', () => {
     render(<Experience />);
 
     expect(screen.getByText('Expérience & Formation')).toBeInTheDocument();
@@ -15,6 +15,14 @@ describe('Experience component', () => {
 
     expect(screen.getByText(/BTS SIO/i)).toBeInTheDocument();
     expect(screen.getByText(/Lycée Gaston Berger — Lille/i)).toBeInTheDocument();
+
+    // Side projects section
+    expect(screen.getByText('Side Projects')).toBeInTheDocument();
+    expect(screen.getByText('docGenerator')).toBeInTheDocument();
+    expect(screen.getByText('BriefMe')).toBeInTheDocument();
+    expect(screen.getByText('Site CV (Version React)')).toBeInTheDocument();
+    expect(screen.getByText('Site CV (Version Angular)')).toBeInTheDocument();
+    expect(screen.getByText('En cours de développement')).toBeInTheDocument();
   });
 
   it('renders experience without envTechnique (marginBottom ternary branch)', () => {
@@ -36,6 +44,7 @@ describe('Experience component', () => {
     vi.doMock('../../data/cvData', () => ({
       experiences: mockExps,
       education: [],
+      sideProjects: [],
     }));
   });
 
@@ -46,3 +55,4 @@ describe('Experience component', () => {
     expect(screen.getByText(/Baccalauréat ES/i)).toBeInTheDocument();
   });
 });
+
