@@ -8,6 +8,8 @@ describe('About component', () => {
     render(<About />);
 
     expect(screen.getByText('À propos de moi')).toBeInTheDocument();
+    expect(screen.getByTestId('availability-badge')).toBeInTheDocument();
+    expect(screen.getByTestId('led-indicator')).toBeInTheDocument();
     expect(screen.getByText('Backend')).toBeInTheDocument();
     expect(screen.getByText('Code Propre')).toBeInTheDocument();
     expect(screen.getByText('Localisation')).toBeInTheDocument();

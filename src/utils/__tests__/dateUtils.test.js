@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { calculateAge, calculateDuration } from '../dateUtils';
+import { calculateAge, calculateDuration, getAvailabilityStatus } from '../dateUtils';
 
 describe('dateUtils', () => {
   describe('calculateAge', () => {
@@ -89,5 +89,48 @@ describe('dateUtils', () => {
       expect(calculateDuration('2030-01-01', '2026-01-01')).toBe('0 mois');
     });
   });
+
+  describe('getAvailabilityStatus', () => {
+    const fixedNow = new Date('2026-08-18T12:00:00Z');
+
+    it('should return red (Indisponible) if the latest experience has no end date', () => {
+      const mockExperiences = [
+        { startDate: '2024-02-11', endDate: null },
+        { startDate: '2022-02-01', endDate: '2024-02-10' }
+      ];
+      const result = getAvailabilityStatus(mockExperiences, fixedNow);
+      expect(result.color).toBe('red');
+      expect(result.status).toBe('unavailable');
+      expect(result.label).toBe('Indisponible');
+    });
+
+    it('should return orange (Disponible à partir du...) if latest experience end date is in the future', () => {
+      const mockExperiences = [
+        { startDate: '2025-01-01', endDate: '2026-10-31' },
+        { startDate: '2022-02-01', endDate: '2024-12-31' }
+      ];
+      const result = getAvailabilityStatus(mockExperiences, fixedNow);
+      expect(result.color).toBe('orange');
+      expect(result.status).toBe('available_from');
+      expect(result.label).toContain('Disponible à partir du 31 octobre 2026');
+    });
+
+    it('should return green (Disponible) if latest experience end date is past or present', () => {
+      const mockExperiences = [
+        { startDate: '2024-01-01', endDate: '2026-06-30' }
+      ];
+      const result = getAvailabilityStatus(mockExperiences, fixedNow);
+      expect(result.color).toBe('green');
+      expect(result.status).toBe('available');
+      expect(result.label).toBe('Disponible');
+    });
+
+    it('should return default green available if experiences list is empty', () => {
+      const result = getAvailabilityStatus([], fixedNow);
+      expect(result.color).toBe('green');
+      expect(result.label).toBe('Disponible');
+    });
+  });
 });
+
 

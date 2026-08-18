@@ -383,4 +383,32 @@ section {
 @keyframes spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
-}
+}
+
+/* iOS-style Availability LED Dot Indicator */
+@keyframes iosLedPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.55;
+    transform: scale(0.92);
+  }
+}
+
+.ios-led-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+  animation: iosLedPulse 2.2s infinite ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ios-led-dot {
+    animation: none;
+  }
+}
+
