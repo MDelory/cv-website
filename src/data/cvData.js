@@ -52,6 +52,7 @@ export const skillCategories = [
             'Docker / Kubernetes (GKE) / CloudRun',
             'Pipelines CI/CD & GitHub Actions',
             'Dynatrace & Datadog',
+            'Sonar',
             'OAuth2 / JWT & Sécurité API',
             'Méthode Agile / Scrum',
         ]
@@ -67,12 +68,12 @@ export const experiences = [
         startDate: '2024-02-11',
         endDate: '2026-09-11', // Présent
         description: "Conception et développement d'APIs REST au sein d'un Écosystème Microservices à forte charge (KIABI — retail 35 pays). Déploiement et intégration continue sur Google Cloud Platform (GCP) avec Docker & Kubernetes. Optimisation des requêtes Oracle / PostgreSQL et mise en place de pipelines CI/CD.",
-        envTechnique: 'Java 17, Java 21 · Spring Boot 3 & 4 · Microservices · GCP · Docker · Oracle · PostgreSQL · CI/CD · Talend',
+        envTechnique: 'Java 17, Java 21 · Spring Boot 3 & 4 · Microservices · GCP · Docker · Oracle · PostgreSQL · CI/CD · Sonar · Datadog · Dynatrace · Talend',
         bullets: [
             "Conception et développement d'APIs REST au sein d'un Écosystème Microservices à forte charge (KIABI — retail 35 pays).",
             "Déploiement et intégration continue sur Google Cloud Platform (GCP) avec Docker & GKE / CloudRun",
             "Optimisation des requêtes Oracle / PostgreSQL, pipelines CI/CD et résilience applicative.",
-            "Env. : Java 17, Java 21 · Spring Boot 3 & 4 · Microservices · GCP · Docker · Oracle · PostgreSQL · CI/CD · Talend"
+            "Env. : Java 17, Java 21 · Spring Boot 3 & 4 · Microservices · GCP · Docker · Oracle · PostgreSQL · CI/CD · Sonar · Datadog · Dynatrace · Talend"
         ]
     },
     {
@@ -83,12 +84,12 @@ export const experiences = [
         startDate: '2022-02-01',
         endDate: '2024-02-10',
         description: "Intégration d'APIs REST dans un Écosystème Microservices — analyse, développement, recette et suivi de production. Mise en œuvre d'un cache distribué Redis pour l'optimisation des performances applicatives. Refactoring et conteneurisation Docker.",
-        envTechnique: 'Java 8, Java 11, Java 17 · Spring Boot 3 · Microservices · Redis · Python · PostgreSQL · Docker · Talend',
+        envTechnique: 'Java 8, Java 11, Java 17 · Spring Boot 3 · Microservices · Redis · Python · PostgreSQL · Docker · Sonar · Talend',
         bullets: [
             "Intégration d'APIs REST dans un Écosystème Microservices — analyse, développement, recette et suivi de production.",
             "Mise en œuvre d'un cache distribué Redis pour l'optimisation des performances applicatives.",
             "Refactoring et maintenance corrective en environnement Docker conteneurisé.",
-            "Env. : Java 8, Java 11, Java 17 · Spring Boot 3 · Microservices · Redis · Python · PostgreSQL · Docker · Talend"
+            "Env. : Java 8, Java 11, Java 17 · Spring Boot 3 · Microservices · Redis · Python · PostgreSQL · Docker · Sonar · Talend"
         ]
     },
     {
