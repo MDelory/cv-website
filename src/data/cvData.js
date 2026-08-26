@@ -57,7 +57,7 @@ export const skillCategories = [
             'Dynatrace & Datadog',
             'Sonar',
             'OAuth2 / JWT & Sécurité API',
-            'Méthode Agile / Scrum',
+            'Agile / Scrum',
         ]
     }
 ];
