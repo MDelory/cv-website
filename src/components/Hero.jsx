@@ -35,7 +35,7 @@ const Hero = () => {
                     fontSize: 'clamp(0.85rem, 2vw, 1.1rem)',
                     fontWeight: '600'
                 }}>
-                    Développeur Backend Java & Architectures Microservices
+                    Développeur Sénior Backend Java & Architectures Microservices
                 </h4>
                 <h1 style={{
                     fontSize: 'clamp(2.4rem, 7vw, 5.5rem)',

@@ -3,7 +3,7 @@ import { calculateAge } from '../utils/dateUtils';
 export const personalInfo = {
     firstName: 'Martin',
     lastName: 'Delory',
-    title: 'Développeur Backend & Architectures Microservices',
+    title: 'Développeur Sénior Backend & Architectures Microservices',
     email: 'delorymartin@gmail.com',
     location: 'Métropole Lilloise',
     mobility: 'Permis B — Véhiculé',
@@ -15,8 +15,10 @@ export const personalInfo = {
 export const getAge = () => calculateAge(personalInfo.birthDate);
 
 export const profileSummary = {
-    short: (age) => `Développeur Back-end Senior de ${age} ans fort d'une solide expertise en conception logicielle et architectures distribuées. Spécialisé en Java (versions 8 à 25), Spring Boot 3 et écosystème Microservices, je maîtrise également PHP, Node.js et Python.`,
-    full: (age) => `Développeur Back-end Senior (${age} ans) fort d'une solide expertise en développement back-end et architectures distribuées. Principalement axé sur l'écosystème Java (versions 8, 11, 17, 21, 25) et Spring Boot 3, je maîtrise également d'autres langages back-end tels que PHP (Symfony), Node.js et Python. Spécialisé dans la conception d'APIs RESTful résilientes à fort volume, l'écosystème Microservices, l'optimisation des bases de données (Oracle, PostgreSQL, Redis) et le déploiement continu sur GCP et Docker.`
+    short: (age) =>
+        `Développeur Back-end Senior, âgé de ${age} ans, avec 10 ans d’expérience, spécialisé en Java / Spring Boot, APIs REST et architectures Microservices. Conception de solutions back-end résilientes et performantes, déployées sur GCP et Docker, avec une forte expérience des bases de données SQL et des environnements à fort volume.`,
+    full: (age) =>
+        `Développeur Back-end Senior, âgé de ${age} ans, avec 10 ans d’expérience en développement logiciel et conception d’architectures distribuées. Spécialisé en Java / Spring Boot 3, APIs REST et architectures Microservices, je conçois des services back-end résilients, performants et adaptés aux environnements à fort volume. Expérience en GCP, Docker et CI/CD, ainsi qu’en optimisation des bases de données Oracle, PostgreSQL et Redis. Maîtrise complémentaire de PHP / Symfony, Node.js et Python.`
 };
 
 export const skillCategories = [
@@ -48,9 +50,10 @@ export const skillCategories = [
         title: 'DevOps & Outils',
         pdfLabel: 'DEVOPS & OUTILS',
         skills: [
-            'Google Cloud Platform (GCP)',
-            'Docker / Kubernetes (GKE) / CloudRun',
-            'Pipelines CI/CD & GitHub Actions',
+            'GCP (Pubsub / CloudStorage / IAM )',
+            'GCP (CloudRun / GKE / secretManager)',
+            'Docker',
+            'CI/CD & GitHub Actions',
             'Dynatrace & Datadog',
             'Sonar',
             'OAuth2 / JWT & Sécurité API',
@@ -68,12 +71,12 @@ export const experiences = [
         startDate: '2024-02-11',
         endDate: '2026-09-11', // Présent
         description: "Conception et développement d'APIs REST au sein d'un Écosystème Microservices à forte charge (KIABI — retail 35 pays). Déploiement et intégration continue sur Google Cloud Platform (GCP) avec Docker & Kubernetes. Optimisation des requêtes Oracle / PostgreSQL et mise en place de pipelines CI/CD.",
-        envTechnique: 'Java 17, Java 21 · Spring Boot 3 & 4 · Microservices · GCP · Docker · Oracle · PostgreSQL · CI/CD · Sonar · Datadog · Dynatrace · Talend',
+        envTechnique: 'Java 17, Java 21 · Spring Boot 3 & 4 · Microservices · GCP (CloudRun / GKE / Pubsub / IAM / Cloud Storage /  secretManager) · Docker · Oracle · PostgreSQL · CI/CD · Sonar · Datadog · Dynatrace · Talend',
         bullets: [
             "Conception et développement d'APIs REST au sein d'un Écosystème Microservices à forte charge (KIABI — retail 35 pays).",
             "Déploiement et intégration continue sur Google Cloud Platform (GCP) avec Docker & GKE / CloudRun",
             "Optimisation des requêtes Oracle / PostgreSQL, pipelines CI/CD et résilience applicative.",
-            "Env. : Java 17, Java 21 · Spring Boot 3 & 4 · Microservices · GCP · Docker · Oracle · PostgreSQL · CI/CD · Sonar · Datadog · Dynatrace · Talend"
+            "Env. : Java 17, Java 21 · Spring Boot 3 & 4 · Microservices · GCP (CloudRun / GKE / Pubsub / IAM / Cloud Storage / secretManager) · Docker · Oracle · PostgreSQL · CI/CD · Sonar · Datadog · Dynatrace · Talend"
         ]
     },
     {
@@ -219,14 +222,6 @@ export const sideProjects = [
         status: null,
         stack: 'React 19 · Vite · Vitest · CSS3',
         description: 'Version actuelle du CV en ligne : vitrine interactive et responsive avec export PDF dynamique et suite de tests automatisée.',
-        category: 'Web App'
-    },
-    {
-        id: 'cv-angular',
-        title: 'Site CV (Version Angular)',
-        status: null,
-        stack: 'Angular 12/13 · TypeScript · RxJS',
-        description: 'Première version du site CV développée sous Angular 12/13, axée sur l\'architecture orientée composants.',
         category: 'Web App'
     }
 ];
