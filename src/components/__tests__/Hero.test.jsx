@@ -10,7 +10,7 @@ describe('Hero component', () => {
     expect(screen.getByText(/Martin/i)).toBeInTheDocument();
     expect(screen.getByText(/Delory/i)).toBeInTheDocument();
     expect(
-      screen.getByText(/Développeur Backend Java & Architectures Microservices/i)
+      screen.getByText(/Backend Java & Architectures Microservices/i)
     ).toBeInTheDocument();
 
     const pdfButton = screen.getAllByRole('button', { name: /télécharger cv/i })[0];

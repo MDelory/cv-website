@@ -15,15 +15,25 @@ permissions:
   pull-requests: read
 
 jobs:
+  workflow-lint:
+    name: GitHub Actions Workflow Linter (actionlint)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run actionlint static analysis
+        uses: rhysd/actionlint-action@v1
+
   security-audit:
     name: Security & Vulnerability Audit
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v7
+        uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: 'npm'
@@ -39,25 +49,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@v4
 
       - name: Initialize CodeQL for JavaScript/JSX
-        uses: github/codeql-action/init@v4
+        uses: github/codeql-action/init@v3
         with:
           languages: 'javascript-typescript'
 
       - name: Perform CodeQL Security Scan
-        uses: github/codeql-action/analyze@v4
+        uses: github/codeql-action/analyze@v3
 
   build-and-test:
     name: Build, Lint & Test Coverage
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v7
+        uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: 'npm'
@@ -73,7 +83,7 @@ jobs:
 
       - name: Upload Test Coverage Artifacts
         if: always()
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v4
         with:
           name: code-coverage-report
           path: coverage/
@@ -81,4 +91,5 @@ jobs:
 
       - name: Build project production bundle
         run: npm run build
+
 

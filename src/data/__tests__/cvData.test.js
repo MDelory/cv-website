@@ -70,12 +70,11 @@ describe('cvData module', () => {
 
   it('should export sideProjects with required items and properties', () => {
     expect(Array.isArray(sideProjects)).toBe(true);
-    expect(sideProjects.length).toBe(4);
+    expect(sideProjects.length).toBe(3);
     const titles = sideProjects.map(p => p.title);
     expect(titles).toContain('docGenerator');
     expect(titles).toContain('BriefMe');
     expect(titles).toContain('Site CV (Version React)');
-    expect(titles).toContain('Site CV (Version Angular)');
 
     sideProjects.forEach(project => {
       expect(project.id).toBeDefined();

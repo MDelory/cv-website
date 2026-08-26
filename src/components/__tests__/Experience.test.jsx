@@ -21,7 +21,6 @@ describe('Experience component', () => {
     expect(screen.getByText('docGenerator')).toBeInTheDocument();
     expect(screen.getByText('BriefMe')).toBeInTheDocument();
     expect(screen.getByText('Site CV (Version React)')).toBeInTheDocument();
-    expect(screen.getByText('Site CV (Version Angular)')).toBeInTheDocument();
     expect(screen.getByText('En cours de développement')).toBeInTheDocument();
   });
 
