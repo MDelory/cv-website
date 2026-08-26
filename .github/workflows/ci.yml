@@ -24,7 +24,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run actionlint static analysis
-        uses: rhysd/actionlint-action@v1
+        run: |
+          bash <(curl https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
+          ./actionlint
 
   security-audit:
     name: Security & Vulnerability Audit

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1787758981781" clover="3.2.0">
-  <project timestamp="1787758981781" name="All files">
-    <metrics statements="304" coveredstatements="299" conditionals="199" coveredconditionals="172" methods="92" coveredmethods="92" elements="595" coveredelements="563" complexity="0" loc="304" ncloc="304" packages="4" files="12" classes="12"/>
+<coverage generated="1787767053247" clover="3.2.0">
+  <project timestamp="1787767053247" name="All files">
+    <metrics statements="304" coveredstatements="299" conditionals="199" coveredconditionals="171" methods="92" coveredmethods="92" elements="595" coveredelements="562" complexity="0" loc="304" ncloc="304" packages="4" files="12" classes="12"/>
     <package name="src">
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="App.jsx" path="C:\Users\Martin Delory\Documents\work\cv-website\src\App.jsx">
@@ -10,7 +10,7 @@
       </file>
     </package>
     <package name="src.components">
-      <metrics statements="241" coveredstatements="239" conditionals="137" coveredconditionals="119" methods="83" coveredmethods="83"/>
+      <metrics statements="241" coveredstatements="239" conditionals="137" coveredconditionals="118" methods="83" coveredmethods="83"/>
       <file name="About.jsx" path="C:\Users\Martin Delory\Documents\work\cv-website\src\components\About.jsx">
         <metrics statements="17" coveredstatements="17" conditionals="4" coveredconditionals="2" methods="6" coveredmethods="6"/>
         <line num="9" count="2" type="stmt"/>
@@ -217,7 +217,7 @@
         <line num="225" count="16" type="stmt"/>
       </file>
       <file name="ParticleBackground.jsx" path="C:\Users\Martin Delory\Documents\work\cv-website\src\components\ParticleBackground.jsx">
-        <metrics statements="46" coveredstatements="46" conditionals="8" coveredconditionals="8" methods="11" coveredmethods="11"/>
+        <metrics statements="46" coveredstatements="46" conditionals="8" coveredconditionals="7" methods="11" coveredmethods="11"/>
         <line num="3" count="7" type="stmt"/>
         <line num="4" count="12" type="stmt"/>
         <line num="6" count="12" type="stmt"/>
@@ -236,7 +236,7 @@
         <line num="28" count="30960" type="stmt"/>
         <line num="29" count="30960" type="stmt"/>
         <line num="32" count="30960" type="cond" truecount="2" falsecount="0"/>
-        <line num="33" count="30960" type="cond" truecount="2" falsecount="0"/>
+        <line num="33" count="30960" type="cond" truecount="1" falsecount="1"/>
         <line num="34" count="30960" type="cond" truecount="2" falsecount="0"/>
         <line num="35" count="30960" type="cond" truecount="2" falsecount="0"/>
         <line num="39" count="30960" type="stmt"/>
