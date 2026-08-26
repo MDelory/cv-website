@@ -5,6 +5,7 @@ on:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+  workflow_dispatch:
   schedule:
     # Scan de sécurité automatique hebdomadaire (chaque lundi à 4h00 UTC)
     - cron: '0 4 * * 1'
