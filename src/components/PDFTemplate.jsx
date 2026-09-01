@@ -142,19 +142,24 @@ const PDFTemplate = () => {
                     const metaStr = exp.client ? `${exp.company} — Mission Client : ${exp.client}` : exp.company;
 
                     return (
-                        <div key={exp.id} style={{ marginBottom: '10px' }}>
+                        <div key={exp.id} style={{ marginBottom: '8px' }}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: '4px' }}>
-                                <span style={{ fontWeight: '700', fontSize: '10pt', color: C.dark }}>{exp.title}</span>
+                                <span style={{ fontWeight: '700', fontSize: '9.5pt', color: C.dark }}>{exp.title}</span>
                                 <span style={{ fontSize: '8pt', fontWeight: '600', color: C.primary, whiteSpace: 'nowrap' }}>
                                     {startStr} – {endStr} ({duration})
                                 </span>
                             </div>
-                            <div style={{ fontSize: '8.5pt', color: C.muted, fontWeight: '600', marginBottom: '3px' }}>{metaStr}</div>
-                            <ul style={{ margin: 0, paddingLeft: '16px', fontSize: '8pt', color: C.body, lineHeight: '1.4' }}>
+                            <div style={{ fontSize: '8.5pt', color: C.muted, fontWeight: '600', marginBottom: '2px' }}>{metaStr}</div>
+                            <ul style={{ margin: 0, paddingLeft: '16px', fontSize: '8pt', color: C.body, lineHeight: '1.35' }}>
                                 {exp.bullets.map((b, i) => (
                                     <li key={i} style={{ marginBottom: '1px' }}>{b}</li>
                                 ))}
                             </ul>
+                            {exp.envTechnique && (
+                                <div style={{ fontSize: '7.5pt', color: C.primary, fontWeight: '500', marginTop: '2px' }}>
+                                    <span style={{ color: C.muted, fontWeight: '600' }}>Env. Technique : </span>{exp.envTechnique}
+                                </div>
+                            )}
                         </div>
                     );
                 })}
@@ -166,11 +171,16 @@ const PDFTemplate = () => {
                             const duration = calculateDuration(exp.startDate, exp.endDate);
                             return (
                                 <div key={exp.id} style={{ flex: 1 }}>
-                                    <div style={{ fontWeight: '700', fontSize: '9pt', color: C.dark }}>{exp.title}</div>
-                                    <div style={{ fontSize: '8pt', color: C.muted, fontWeight: '600' }}>
+                                    <div style={{ fontWeight: '700', fontSize: '8.5pt', color: C.dark }}>{exp.title}</div>
+                                    <div style={{ fontSize: '7.5pt', color: C.muted, fontWeight: '600' }}>
                                         {exp.company} &bull; {duration}
                                     </div>
                                     <div style={{ fontSize: '7.5pt', color: C.body }}>{exp.description}</div>
+                                    {exp.envTechnique && (
+                                        <div style={{ fontSize: '7pt', color: C.primary, fontWeight: '500', marginTop: '1px' }}>
+                                            <span style={{ color: C.muted, fontWeight: '600' }}>Env. : </span>{exp.envTechnique}
+                                        </div>
+                                    )}
                                 </div>
                             );
                         })}
