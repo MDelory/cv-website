@@ -4,7 +4,7 @@ import { Briefcase, GraduationCap, FolderGit2 } from 'lucide-react';
 import ParticleBackground from './ParticleBackground';
 import { experiences, education, sideProjects } from '../data/cvData';
 
-const ExperienceItem = ({ title, company, client, startDate, endDate, description, envTechnique, isLast }) => {
+const ExperienceItem = ({ title, company, client, startDate, endDate, description, envTechnique, isLast, bullets }) => {
     const duration = calculateDuration(startDate, endDate || new Date());
     const endDisplay = endDate ? new Date(endDate).toLocaleDateString('fr-FR', { month: 'short', year: 'numeric' }) : "Aujourd'hui";
     const startDisplay = new Date(startDate).toLocaleDateString('fr-FR', { month: 'short', year: 'numeric' });
@@ -46,7 +46,22 @@ const ExperienceItem = ({ title, company, client, startDate, endDate, descriptio
             }}>
                 {startDisplay} - {endDisplay} • {duration}
             </div>
-            <p style={{ color: 'var(--color-text-muted)', marginBottom: envTechnique ? '0.5rem' : '0' }}>{description}</p>
+            <p style={{ color: 'var(--color-text-muted)', marginBottom: '0.75rem', lineHeight: '1.6' }}>{description}</p>
+            
+            {bullets && bullets.length > 0 && (
+                <ul style={{
+                    paddingLeft: '1.2rem',
+                    marginBottom: '0.8rem',
+                    color: 'var(--color-text-muted)',
+                    fontSize: '0.92rem',
+                    lineHeight: '1.5'
+                }}>
+                    {bullets.map((b, idx) => (
+                        <li key={idx} style={{ marginBottom: '0.4rem' }}>{b}</li>
+                    ))}
+                </ul>
+            )}
+
             {envTechnique && (
                 <p style={{ fontSize: '0.88rem', color: 'var(--color-primary)', fontWeight: '500' }}>
                     <span style={{ color: 'var(--color-text-muted)', fontWeight: '600' }}>Env. Technique : </span>{envTechnique}
@@ -157,6 +172,7 @@ const Experience = () => {
                                     endDate={exp.endDate}
                                     description={exp.description}
                                     envTechnique={exp.envTechnique}
+                                    bullets={exp.bullets}
                                     isLast={i === nticoExps.length - 1}
                                 />
                             ))}
@@ -174,6 +190,7 @@ const Experience = () => {
                                     endDate={exp.endDate}
                                     description={exp.description}
                                     envTechnique={exp.envTechnique}
+                                    bullets={exp.bullets}
                                     isLast={i === quadraExps.length - 1}
                                 />
                             ))}
@@ -190,6 +207,7 @@ const Experience = () => {
                                     endDate={exp.endDate}
                                     description={exp.description}
                                     envTechnique={exp.envTechnique}
+                                    bullets={exp.bullets}
                                     isLast={true}
                                 />
                             </ExperienceGroup>
