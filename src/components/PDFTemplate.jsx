@@ -150,6 +150,11 @@ const PDFTemplate = () => {
                                 </span>
                             </div>
                             <div style={{ fontSize: '8.5pt', color: C.muted, fontWeight: '600', marginBottom: '2px' }}>{metaStr}</div>
+                            {exp.description && (
+                                <div style={{ fontSize: '8pt', color: C.body, fontStyle: 'italic', marginBottom: '3px' }}>
+                                    {exp.description}
+                                </div>
+                            )}
                             <ul style={{ margin: 0, paddingLeft: '16px', fontSize: '8pt', color: C.body, lineHeight: '1.35' }}>
                                 {exp.bullets.map((b, i) => (
                                     <li key={i} style={{ marginBottom: '1px' }}>{b}</li>
