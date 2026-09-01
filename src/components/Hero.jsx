@@ -2,6 +2,7 @@ import React from 'react';
 import { ArrowDown } from 'lucide-react';
 import ParticleBackground from './ParticleBackground';
 import PDFDownloadButton from './PDFDownloadButton';
+import { personalInfo } from '../data/cvData';
 
 const Hero = () => {
     return (
@@ -35,7 +36,7 @@ const Hero = () => {
                     fontSize: 'clamp(0.85rem, 2vw, 1.1rem)',
                     fontWeight: '600'
                 }}>
-                    Développeur Sénior Backend Java & Architectures Microservices
+                    {personalInfo.title}
                 </h4>
                 <h1 style={{
                     fontSize: 'clamp(2.4rem, 7vw, 5.5rem)',
