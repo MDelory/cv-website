@@ -54,6 +54,15 @@ const parseLocalDate = (dateInput) => {
   return new Date(dateInput);
 };
 
+export const sortByStartDateDesc = (experiences = []) => {
+  if (!experiences || !Array.isArray(experiences)) return [];
+  return [...experiences].sort((a, b) => {
+    const dateA = parseLocalDate(a.startDate);
+    const dateB = parseLocalDate(b.startDate);
+    return (dateB ? dateB.getTime() : 0) - (dateA ? dateA.getTime() : 0);
+  });
+};
+
 export const getAvailabilityStatus = (experiences = [], currentDate = new Date()) => {
   if (!experiences || experiences.length === 0) {
     return {
@@ -64,11 +73,7 @@ export const getAvailabilityStatus = (experiences = [], currentDate = new Date()
   }
 
   // Trier par date de début décroissante pour obtenir la plus récente
-  const sorted = [...experiences].sort((a, b) => {
-    const dateA = parseLocalDate(a.startDate);
-    const dateB = parseLocalDate(b.startDate);
-    return (dateB ? dateB.getTime() : 0) - (dateA ? dateA.getTime() : 0);
-  });
+  const sorted = sortByStartDateDesc(experiences);
 
   const latestExp = sorted[0];
 

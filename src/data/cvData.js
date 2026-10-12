@@ -1,4 +1,4 @@
-import { calculateAge } from '../utils/dateUtils';
+import { calculateAge, sortByStartDateDesc } from '../utils/dateUtils';
 
 export const personalInfo = {
     firstName: 'Martin',
@@ -65,7 +65,26 @@ export const skillCategories = [
     }
 ];
 
-export const experiences = [
+export const experiences = sortByStartDateDesc([
+    {
+        id: 'leroymerlin',
+        title: 'Développeur FullStack Senior',
+        company: 'Portage salarial',
+        client: 'LeroyMerlin',
+        startDate: '2026-10-01',
+        endDate: '',
+        description:
+            "Équipe WMS Platform — Périmètre logistique de migration des systèmes de gestion d'entrepôt vers une solution SaaS mutualisée",
+        envTechnique:
+            'Java 25 · Spring Boot 4 · Microservices · REST · Kafka · WMS Manhattan · GCP (GKE / Pub/Sub) · Docker · PostgreSQL · Vue.js · CI/CD · Sonar · Datadog · Debezium',
+        bullets: [
+            "Conception et développement d'une plateforme de flux backend pour la gestion d'entrepôts (WMS)",
+            "Développement et maintien d'une plateforme Front de monitoring (Vue.js)",
+            "Déploiement et exploitation Microservices sur GCP (GKE) avec conteneurisation Docker et gestion événementielle (Kafka / Pub/Sub).",
+            "Optimisation des accès données PostgreSQL (requêtes, indexation) et suivi des performances via Datadog.",
+            "Industrialisation des livraisons via pipelines CI/CD et contrôles Sonar."
+        ]
+    },
     {
         id: 'kiabi',
         title: 'Développeur Senior Backend Java & Microservices',
@@ -107,7 +126,7 @@ export const experiences = [
         id: 'capdemat',
         title: 'Développeur Full Stack & Référent Technique',
         company: 'Quadra-Informatique',
-        client: 'Centre de Service Secteur Public (CAPDEMAT)',
+        client: 'Centre de Services Secteur Public (CAPDEMAT)',
         startDate: '2018-01-01',
         endDate: '2022-02-21',
         description:
@@ -173,7 +192,7 @@ export const experiences = [
             "Modélisation de la base de données relationnelle et sécurisation de la gestion des comptes."
         ]
     }
-];
+]);
 
 export const education = [
     {
@@ -194,7 +213,7 @@ export const education = [
     },
     {
         id: 'bac-es',
-        title: 'Baccalauréat ES (Économique & Sociale)',
+        title: 'Baccalauréat ES (Économique & Social)',
         shortTitle: 'Baccalauréat ES',
         establishment: 'L.I.C.P — Tourcoing',
         year: '2011',

@@ -36,7 +36,7 @@ describe('cvData module', () => {
     });
   });
 
-  it('should contain experiences with required properties', () => {
+  it('should contain experiences with required properties and sorted by startDate descending', () => {
     expect(Array.isArray(experiences)).toBe(true);
     expect(experiences.length).toBeGreaterThan(0);
     experiences.forEach(exp => {
@@ -44,6 +44,12 @@ describe('cvData module', () => {
       expect(exp.title).toBeDefined();
       expect(exp.startDate).toBeDefined();
     });
+
+    for (let i = 0; i < experiences.length - 1; i++) {
+      const currentStart = new Date(experiences[i].startDate).getTime();
+      const nextStart = new Date(experiences[i + 1].startDate).getTime();
+      expect(currentStart).toBeGreaterThanOrEqual(nextStart);
+    }
   });
 
   it('should contain education items', () => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { calculateDuration } from '../utils/dateUtils';
+import { calculateDuration, sortByStartDateDesc } from '../utils/dateUtils';
 import { Briefcase, GraduationCap, FolderGit2 } from 'lucide-react';
 import ParticleBackground from './ParticleBackground';
 import { experiences, education, sideProjects } from '../data/cvData';
@@ -136,10 +136,22 @@ const SideProjectItem = ({ title, status, stack, description }) => (
 );
 
 const Experience = () => {
-    // Grouper par entreprise si désiré, ou afficher la liste ordonnée
-    const nticoExps = experiences.filter(e => e.company === 'NTICO');
-    const quadraExps = experiences.filter(e => e.company === 'Quadra-Informatique');
-    const stageExps = experiences.filter(e => !['NTICO', 'Quadra-Informatique'].includes(e.company));
+    // Trier les expériences par date de début décroissante (du plus récent au moins récent)
+    const sortedExperiences = sortByStartDateDesc(experiences);
+
+    // Regrouper les expériences consécutives par entreprise tout en respectant l'ordre chronologique décroissant
+    const experienceGroups = sortedExperiences.reduce((groups, exp) => {
+        const lastGroup = groups[groups.length - 1];
+        if (lastGroup && lastGroup.company === exp.company) {
+            lastGroup.items.push(exp);
+        } else {
+            groups.push({
+                company: exp.company,
+                items: [exp]
+            });
+        }
+        return groups;
+    }, []);
 
     return (
         <section id="experience" style={{ position: 'relative', overflow: 'hidden' }}>
@@ -160,56 +172,22 @@ const Experience = () => {
                             Expérience
                         </h3>
 
-                        {/* Groupe NTICO */}
-                        <ExperienceGroup>
-                            {nticoExps.map((exp, i) => (
-                                <ExperienceItem
-                                    key={exp.id}
-                                    title={exp.title}
-                                    company={exp.company}
-                                    client={exp.client}
-                                    startDate={exp.startDate}
-                                    endDate={exp.endDate}
-                                    description={exp.description}
-                                    envTechnique={exp.envTechnique}
-                                    bullets={exp.bullets}
-                                    isLast={i === nticoExps.length - 1}
-                                />
-                            ))}
-                        </ExperienceGroup>
-
-                        {/* Groupe Quadra */}
-                        <ExperienceGroup>
-                            {quadraExps.map((exp, i) => (
-                                <ExperienceItem
-                                    key={exp.id}
-                                    title={exp.title}
-                                    company={exp.company}
-                                    client={exp.client}
-                                    startDate={exp.startDate}
-                                    endDate={exp.endDate}
-                                    description={exp.description}
-                                    envTechnique={exp.envTechnique}
-                                    bullets={exp.bullets}
-                                    isLast={i === quadraExps.length - 1}
-                                />
-                            ))}
-                        </ExperienceGroup>
-
-                        {/* Stages */}
-                        {stageExps.map((exp) => (
-                            <ExperienceGroup key={exp.id}>
-                                <ExperienceItem
-                                    title={exp.title}
-                                    company={exp.company}
-                                    client={exp.client}
-                                    startDate={exp.startDate}
-                                    endDate={exp.endDate}
-                                    description={exp.description}
-                                    envTechnique={exp.envTechnique}
-                                    bullets={exp.bullets}
-                                    isLast={true}
-                                />
+                        {experienceGroups.map((group, groupIndex) => (
+                            <ExperienceGroup key={`${group.company || 'group'}-${groupIndex}`}>
+                                {group.items.map((exp, i) => (
+                                    <ExperienceItem
+                                        key={exp.id}
+                                        title={exp.title}
+                                        company={exp.company}
+                                        client={exp.client}
+                                        startDate={exp.startDate}
+                                        endDate={exp.endDate}
+                                        description={exp.description}
+                                        envTechnique={exp.envTechnique}
+                                        bullets={exp.bullets}
+                                        isLast={i === group.items.length - 1}
+                                    />
+                                ))}
                             </ExperienceGroup>
                         ))}
                     </div>

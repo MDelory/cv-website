@@ -160,7 +160,7 @@ const About = () => {
                             }}>
                                 <Car size={26} color="var(--color-primary)" style={{ marginBottom: '0.4rem' }} />
                                 <h3 style={{ fontSize: '0.95rem', marginBottom: '0.15rem' }}>Mobilité</h3>
-                                <p style={{ color: 'var(--color-text-muted)', fontSize: '0.78rem' }}>Permis B - véhiculé</p>
+                                <p style={{ color: 'var(--color-text-muted)', fontSize: '0.78rem' }}>Permis B — Véhiculé</p>
                             </div>
                         </div>
                     </div>
@@ -168,7 +168,7 @@ const About = () => {
                     {/* Colonne Droite : Biographie, piliers techniques & loisirs */}
                     <div>
                         <p style={{ fontSize: '1.1rem', marginBottom: '1.5rem', color: 'var(--color-text-muted)', lineHeight: '1.7' }}>
-                            Développeur Back-end Senior de {age} ans fort d'une solide expertise en développement back-end et architectures distribuées. Principalement axé sur l'écosystème <strong style={{ color: 'var(--color-accent)' }}>Java (versions 8, 11, 17, 21, 25)</strong> et Spring Boot 3, je maîtrise également d'autres langages back-end tels que <strong style={{ color: 'var(--color-primary)' }}>PHP (Symfony), Node.js et Python</strong>.
+                            Développeur Backend Senior de {age} ans, fort d'une solide expertise en développement backend et architectures distribuées. Principalement axé sur l'écosystème <strong style={{ color: 'var(--color-accent)' }}>Java (versions 8, 11, 17, 21, 25)</strong> et Spring Boot 3, je maîtrise également d'autres langages backend tels que <strong style={{ color: 'var(--color-primary)' }}>PHP (Symfony), Node.js et Python</strong>.
                         </p>
                         <p style={{ fontSize: '1.1rem', marginBottom: '1.5rem', color: 'var(--color-text-muted)', lineHeight: '1.7' }}>
                             Spécialisé dans la conception d'APIs RESTful résilientes à fort volume, l'écosystème <strong style={{ color: 'var(--color-accent)' }}>Microservices</strong>, l'optimisation des bases de données (Oracle, PostgreSQL, Redis) et le déploiement continu sur GCP et Docker. J'interviens de la phase d'audit et de conception jusqu'à la mise en production.

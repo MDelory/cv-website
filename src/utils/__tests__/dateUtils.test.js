@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { calculateAge, calculateDuration, getAvailabilityStatus } from '../dateUtils';
+import { calculateAge, calculateDuration, getAvailabilityStatus, sortByStartDateDesc } from '../dateUtils';
 
 describe('dateUtils', () => {
   describe('calculateAge', () => {
@@ -129,6 +129,35 @@ describe('dateUtils', () => {
       const result = getAvailabilityStatus([], fixedNow);
       expect(result.color).toBe('green');
       expect(result.label).toBe('Disponible');
+    });
+  });
+
+  describe('sortByStartDateDesc', () => {
+    it('should sort experiences from most recent to least recent by startDate', () => {
+      const items = [
+        { id: 'exp1', startDate: '2018-01-01' },
+        { id: 'exp2', startDate: '2024-02-11' },
+        { id: 'exp3', startDate: '2016-04-01' },
+        { id: 'exp4', startDate: '2026-10-01' },
+      ];
+      const sorted = sortByStartDateDesc(items);
+      expect(sorted.map(s => s.id)).toEqual(['exp4', 'exp2', 'exp1', 'exp3']);
+    });
+
+    it('should handle empty or null array safely', () => {
+      expect(sortByStartDateDesc([])).toEqual([]);
+      expect(sortByStartDateDesc(null)).toEqual([]);
+      expect(sortByStartDateDesc(undefined)).toEqual([]);
+    });
+
+    it('should not mutate the original array', () => {
+      const items = [
+        { id: 'exp1', startDate: '2018-01-01' },
+        { id: 'exp2', startDate: '2024-02-11' },
+      ];
+      const copy = [...items];
+      sortByStartDateDesc(items);
+      expect(items).toEqual(copy);
     });
   });
 });

@@ -8,6 +8,7 @@ describe('Experience component', () => {
     render(<Experience />);
 
     expect(screen.getByText('Expérience & Formation')).toBeInTheDocument();
+    expect(screen.getAllByText(/LeroyMerlin/i)[0]).toBeInTheDocument();
     expect(screen.getAllByText(/KIABI/i)[0]).toBeInTheDocument();
     expect(screen.getAllByText(/Yzee Service/i)[0]).toBeInTheDocument();
     expect(screen.getAllByText(/CAPDEMAT/i)[0]).toBeInTheDocument();

@@ -1,6 +1,6 @@
 import React from 'react';
 import { personalInfo, getAge, profileSummary, skillCategories, experiences, education, hobbies, sideProjects } from '../data/cvData';
-import { calculateDuration } from '../utils/dateUtils';
+import { calculateDuration, sortByStartDateDesc } from '../utils/dateUtils';
 import profileImg from '../assets/person_cutout.png';
 
 
@@ -38,9 +38,12 @@ const PDFTemplate = () => {
         },
     };
 
+    // Trier les expériences par date de début décroissante (du plus récent au moins récent)
+    const sortedExperiences = sortByStartDateDesc(experiences);
+
     // Séparer les expériences principales et les stages pour un affichage A4 élégant
-    const mainExperiences = experiences.filter(e => e.company === 'NTICO' || e.company === 'Quadra-Informatique');
-    const stageExperiences = experiences.filter(e => !['NTICO', 'Quadra-Informatique'].includes(e.company));
+    const stageExperiences = sortedExperiences.filter(e => e.title?.toLowerCase().includes('stagiaire'));
+    const mainExperiences = sortedExperiences.filter(e => !e.title?.toLowerCase().includes('stagiaire'));
 
     return (
         <div
